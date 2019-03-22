@@ -60,6 +60,7 @@ int BuscadorMinimo(int num, int minimo)
 
 }
 
+//lalalalalala
 
 
 
