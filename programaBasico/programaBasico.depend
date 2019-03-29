@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1553819289 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/programaBasico/main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1553819148 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/programaBasico/funciones.h
+
+1553819726 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/programaBasico/funciones.c
+	<stdio.h>
+	<stdlib.h>
+
