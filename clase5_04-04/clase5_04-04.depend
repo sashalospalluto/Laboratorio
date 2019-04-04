@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1554339290 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/clase5_04-04/main.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	<string.h>
+	"function.h"
+	"funciones.h"
+
+1554336537 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/clase5_04-04/function.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
+1554331969 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/clase5_04-04/function.h
+
+1554339874 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/clase5_04-04/funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<stdio_ext.h>
+	"funciones.h"
+
+1554329879 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/clase5_04-04/funciones.h
+
