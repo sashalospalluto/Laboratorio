@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio_ext.h>
 #include "funciones.h"
+#include "function.h"
 
 int utn_getNumero(int* pResultado,const char *mensaje,const char *mensajeError,int minimo,int maximo,int reintentos)
 {
@@ -138,6 +139,24 @@ int utn_getChar(char* pResultado,const char *mensaje,const char *mensajeError,co
 int validarNumero (char* numero)
 {
     int ret=-1;
+    int i=0;
+    while(*(numero)+i!='\o')
+    {
+        if (isdigit ((*numero)+i))
+        {
+            ret=0;
+
+        }else
+        {
+            break;
+        }
+
+        i++;
+    }
+
+
+
+    /*
     for (int i=0; i<strlen(numero); i++)
     {
          if (isdigit (*numero)+i)
@@ -145,7 +164,7 @@ int validarNumero (char* numero)
             ret=0;
         }
     }
-
+  */
 
     return ret;
 }

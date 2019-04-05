@@ -24,3 +24,31 @@
 
 1554329879 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/clase5_04-04/funciones.h
 
+1554426173 source:/home/alumno/Descargas/Laboratorio-master/clase5_04-04/funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<stdio_ext.h>
+	"funciones.h"
+	"function.h"
+
+1554402193 /home/alumno/Descargas/Laboratorio-master/clase5_04-04/funciones.h
+
+1554424555 source:/home/alumno/Descargas/Laboratorio-master/clase5_04-04/function.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"function.h"
+	"funciones.h"
+
+1554423427 source:/home/alumno/Descargas/Laboratorio-master/clase5_04-04/main.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	<string.h>
+	"function.h"
+	"funciones.h"
+
+1554423837 /home/alumno/Descargas/Laboratorio-master/clase5_04-04/function.h
+
