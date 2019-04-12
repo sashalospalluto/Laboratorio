@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1555026620 source:/home/alumno/Documentos/clase7_11-04/funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones_string.h"
+
+1555023748 source:/home/alumno/Documentos/clase7_11-04/funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<stdio_ext.h>
+	"funciones.h"
+	"function.h"
+
+1554426780 /home/alumno/Documentos/clase7_11-04/funciones.h
+
+1554426780 /home/alumno/Documentos/clase7_11-04/function.h
+
+1555025606 /home/alumno/Documentos/clase7_11-04/funciones_string.h
+
+1555026469 source:/home/alumno/Documentos/clase7_11-04/main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones_string.h"
+
