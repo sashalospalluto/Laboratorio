@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include <stdio_ext.h>
 #include "funciones.h"
 #include "function.h"
-
+/*
 int utn_getNumero(int* pResultado,const char *mensaje,const char *mensajeError,int minimo,int maximo,int reintentos)
 {
     int ret;
@@ -156,7 +155,7 @@ int validarNumero (char* numero)
 
 
 
-    /*
+
     for (int i=0; i<strlen(numero); i++)
     {
          if (isdigit (*numero)+i)
@@ -164,12 +163,12 @@ int validarNumero (char* numero)
             ret=0;
         }
     }
-  */
+
 
     return ret;
 }
 
-
+ */
 
 
 

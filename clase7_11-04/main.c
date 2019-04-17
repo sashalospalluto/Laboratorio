@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
 #include "funciones_string.h"
 #define CANTIDAD 100
 
@@ -11,9 +14,10 @@ int main()
     int ret;
     int i;
     int posVacia;
+    char auxNombres[56];
 
 
-    for (i=0; i<100; i++)
+    for (i=0; i<CANTIDAD; i++)
     {
         nombres[i][0]='\0';
     }
@@ -33,26 +37,22 @@ int main()
             scanf("\n%d",&opcion);
         }while (opcion<1 || opcion>4);
 
-
-       if(ret==0)
-       {
-        printf("error");
-       }
-
         switch (opcion)
         {
             case 1:
 
             if (buscarLibre(nombres, &posVacia,CANTIDAD)==0)
             {
-                printf("pos vacia: %d",posVacia);
+                printf("pos vacia: %d \n\n",posVacia);
             }
 
-            printf("Ingrese un nombre: ");
+            if (getString(auxNombres, "ingrese un nombre: ", "Ingreso invalido, vuelva a ingresar", 1, CANTIDAD, 3)==0)
+            {
+                strcpy(nombres[posVacia],auxNombres);
 
+                printf("Ingreso: %s en la pos %d", nombres[posVacia], posVacia);
+            }
 
-
-                //funcionIngresarNombre()
 
 
                 break;
@@ -65,21 +65,19 @@ int main()
 
 
 
-                buscarNombre (buffer,nombres, LEN LISTA, &posAeliminar);
+//                buscarNombre (buffer,nombres, LEN LISTA, &posAeliminar);
 
                 break;
 
             case 4:
 
-                seguir=='f';
+                seguir='f';
                 break;
 
 
         }
-
-
-
     }
 
+    return 0;
 }
 

@@ -24,3 +24,31 @@
 	<stdlib.h>
 	"funciones_string.h"
 
+1555473812 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase7_11-04\funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones_string.h"
+
+1555473430 c:\users\sashaoriana\documents\utn2019\laboratorio\clase7_11-04\funciones_string.h
+
+1555469628 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase7_11-04\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones_string.h"
+
+1555469589 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase7_11-04\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"funciones.h"
+	"function.h"
+
+1555040579 c:\users\sashaoriana\documents\utn2019\laboratorio\clase7_11-04\funciones.h
+
+1555040579 c:\users\sashaoriana\documents\utn2019\laboratorio\clase7_11-04\function.h
+
