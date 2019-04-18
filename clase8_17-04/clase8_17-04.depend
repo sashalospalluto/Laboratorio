@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1555548065 source:/home/alumno/Descargas/Laboratorio-master (1)/clase8_17-04/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones_string.h"
+	"empleado.h"
+
+1555546090 /home/alumno/Descargas/Laboratorio-master (1)/clase8_17-04/empleado.h
+
+1555548458 source:/home/alumno/Descargas/Laboratorio-master (1)/clase8_17-04/funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones_string.h"
+
+1555548458 /home/alumno/Descargas/Laboratorio-master (1)/clase8_17-04/funciones_string.h
+	"empleado.h"
+
+1555548457 source:/home/alumno/Descargas/Laboratorio-master (1)/clase8_17-04/main.c
+	<stdio.h>
+	<stdlib.h>
+	"empleado.h"
+	"funciones_string.h"
+
