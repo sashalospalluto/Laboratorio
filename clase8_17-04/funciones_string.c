@@ -30,12 +30,14 @@ int getString(Empleado *pResult, char *pMsg, char *pMsgError, int min, int max, 
     while(intentos>0)
     {
         printf(pMsg);
-        __fpurge(stdin); //LIMPIA BUFFER
+        fflush( stdin ); //LIMPIA BUFFER WINDOWS
+        //__fpurge(stdin); //LIMPIA BUFFER LINUX
         fgets(arrayAuxiliar,sizeof(arrayAuxiliar),stdin);
         arrayAuxiliar[strlen(arrayAuxiliar)-1] = '\0';
         if( pResult != NULL && strlen(arrayAuxiliar) >= min && strlen(arrayAuxiliar) <= max && validarLetra(arrayAuxiliar)==0)
         {
             strncpy(pResult,arrayAuxiliar,max);
+
             ret=0;
             break;
         }

@@ -23,3 +23,31 @@
 	"empleado.h"
 	"funciones_string.h"
 
+1556132253 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase8_17-04\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"funciones_string.h"
+	"empleado.h"
+
+1555549243 c:\users\sashaoriana\documents\utn2019\laboratorio\clase8_17-04\funciones_string.h
+	"empleado.h"
+
+1556131046 c:\users\sashaoriana\documents\utn2019\laboratorio\clase8_17-04\empleado.h
+
+1555566769 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase8_17-04\funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones_string.h"
+
+1556132989 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase8_17-04\main.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+	"funciones_string.h"
+
