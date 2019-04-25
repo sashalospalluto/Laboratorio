@@ -1,0 +1,88 @@
+# depslib dependency file v1.0
+1556146623 source:/home/alumno/Documentos/revainera/clase_9/main.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	<string.h>
+	<ctype.h>
+
+1556146664 /home/alumno/Documentos/revainera/clase_9/publicidad.h
+
+1556145864 /home/alumno/Documentos/revainera/clase_9/pantalla.h
+
+1556146023 source:/home/alumno/Documentos/revainera/clase_9/pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	<string.h>
+	<ctype.h>
+
+1556146025 source:/home/alumno/Documentos/revainera/clase_9/publicidad.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	<string.h>
+	<ctype.h>
+
+1556226880 source:c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556154846 c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\publicidad.h
+
+1556223115 c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\pantalla.h
+
+1556154846 c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\empleado.h
+
+1556217896 c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\funciones_string.h
+	"empleado.h"
+
+1556220275 source:c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\main.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556219943 source:c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556154846 source:c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\publicidad.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556219882 source:c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
