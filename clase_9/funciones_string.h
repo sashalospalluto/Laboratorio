@@ -21,4 +21,6 @@ int  isValidIntNumber (char * cadena);
 
 int  getNumber (int * pResult, char * pMsg, char * pMsgError,int min,int max,int intentos);
 
+int getFloat(float *pResultado);
+
 #endif // FUNCIONES_STRING_H_INCLUDED

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdio_ext.h> //linux
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -47,7 +48,7 @@ int pantalla_Alta(Pantalla* pantalla, int cantidad, int posLibre)
 
             getString(pantalla[posLibre].direccion, "\nIngrese Direccion: ", "\nError de ingreso ",3,200,3)==0 &&
 
-            utn_getFloat(&pantalla[posLibre].precio, "\nIngrese precio: ", "\nError de ingreso ",2,1000,3)==0 &&
+            utn_getFloat(&pantalla[posLibre].precio, "\nIngrese precio: ", "\nError de ingreso ",2,100000000,3)==0 &&
 
             pantalla_asignarPantalla(pantalla,posLibre)==0)
     {
@@ -82,12 +83,8 @@ int pantalla_asignarPantalla(Pantalla* pantalla, int posLibre)
 
 void pantalla_generadorId(Pantalla* pantalla,int pos, int* id)
 {
-    int aux=0;
-    aux=id;
-    aux++;
-
-    id=id+1;
-    pantalla[pos].idPantalla=id;
+    (*id)++;
+    pantalla[pos].idPantalla=*id;
 }
 
 void pantalla_mostrar (Pantalla* pantalla, int cantidad)
@@ -97,7 +94,7 @@ void pantalla_mostrar (Pantalla* pantalla, int cantidad)
     {
         if (pantalla[i].isEmpty==0)
         {
-            printf("\nid pantalla: %d", pantalla[i].idPantalla);
+            printf("\n\n\nid pantalla: %d", pantalla[i].idPantalla);
             printf("\nisEmpty: %d",pantalla[i].isEmpty);
             printf("\nnombre: %s",pantalla[i].nombre);
             printf("\ndireccion: %s",pantalla[i].direccion);
@@ -115,16 +112,16 @@ void pantalla_mostrar (Pantalla* pantalla, int cantidad)
     }
 }
 
-int pantalla_buscar(Pantalla* pantalla, int cantidad,const char* mensaje, const char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve)
+int pantalla_buscar(Pantalla* pantalla, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve)
 {
     int ret=1;
     Pantalla auxPantalla;
-
-    if(getNumber(auxPantalla.idPantalla,mensaje,mensajeError,minimo,maximo,reintentos)==0)
+    if(getNumber(&(auxPantalla.idPantalla),mensaje,mensajeError,minimo,maximo,reintentos)==0)
     {
+
         for (int i=0;i<cantidad;i++)
         {
-            if(strcasecmp(pantalla[i].idPantalla,auxPantalla.idPantalla==0))
+            if(pantalla[i].idPantalla==auxPantalla.idPantalla)
             {
                 ret=0;
                 *devuelve=i;
@@ -133,4 +130,85 @@ int pantalla_buscar(Pantalla* pantalla, int cantidad,const char* mensaje, const 
     }
 
     return ret;
+}
+
+void pantalla_modificar(Pantalla* pantalla, int cantidad, int posicion)
+{
+    char seguir='s'; //MENU
+    int opcion; //MENU
+
+    while (seguir=='s')
+    {
+        printf("\n\t\tMODIFICACIONES");
+        printf("\n\n1-nombre");
+        printf("\n\n2-Direccion");
+        printf("\n\n3-Precio");
+        printf("\n\n4-tipo");
+        printf("\n\n5-Salir\n");
+
+        do
+        {
+            printf("\n\t\tingrese la opcion que desea modificar: ");
+            scanf("\n%d",&opcion);
+        }
+        while (opcion<1 || opcion>5);
+
+        switch (opcion)
+
+        {
+            case 1:
+
+                if(getString(pantalla[posicion].nombre,"\nIngrese nombre :", "\nNo ingreso correctamente ",3,50,3)==0)
+                {
+                    printf("Nombre modificado con exito!\n\n");
+                }
+                else
+                {
+                    printf("Error, no ingreso correctamente los datos!\n\n");
+                }
+                break;
+
+            case 2:
+
+                if(getString(pantalla[posicion].direccion, "\nIngrese Direccion: ", "\nError de ingreso ",3,200,3)==0)
+                {
+                    printf("Direccion modificada con exito!\n\n");
+                }
+                else
+                {
+                    printf("Error, no ingreso correctamente los datos!\n\n");
+                }
+                break;
+
+            case 3:
+
+                if(utn_getFloat(&pantalla[posicion].precio, "\nIngrese precio: ", "\nError de ingreso ",2,100000000,3)==0)
+                {
+                    printf("Precio modificado con exito!\n\n");
+                }
+                else
+                {
+                    printf("Error, no ingreso correctamente los datos!\n\n");
+                }
+                break;
+
+            case 4:
+
+                if(pantalla_asignarPantalla(pantalla,posicion)==0)
+                {
+                    printf("Pantalla modificada con exito!\n\n");
+                }
+                else
+                {
+                    printf("Error, no ingreso correctamente los datos!\n\n");
+                }
+                break;
+
+            case 5:
+                seguir='f';
+                break;
+
+        }
+
+    }
 }

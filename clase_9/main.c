@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdio_ext.h> //LINUX
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -28,9 +29,9 @@ int main()
         printf("Se inicializo correctamente publicidad\n");
     }
 
-     while (seguir=='s')
+    while (seguir=='s')
     {
-        printf("\t\tMENU");
+        printf("\n\t\tMENU");
         printf("\n\n1-Alta de pantalla");
         printf("\n\n2-Modificar datos de pantalla");
         printf("\n\n3-Baja de pantalla");
@@ -53,30 +54,29 @@ int main()
         switch (opcion)
         {
         case 1:
-        if(pantalla_buscarLibre(pantalla,CANTPANTALLAS,&posicionPantalla)!=0)
-        {
-            printf("Se encuentra lleno\n\n");
-        }
-        else{
-            if (pantalla_Alta(pantalla,CANTPANTALLAS,posicionPantalla)==0)
+
+            if(pantalla_buscarLibre(pantalla,CANTPANTALLAS,&posicionPantalla)!=0)
             {
-                pantalla_id++; //ponerlo en una funcion
-                pantalla[posicionPantalla].idPantalla=pantalla_id; //ponerlo en una funcion
-                //pantalla_generadorId(pantalla,posicionPantalla,&pantalla_id);
-                pantalla[posicionPantalla].isEmpty=0;
+                printf("Se encuentra lleno\n\n");
             }
-        }
-
-
+            else
+            {
+                if (pantalla_Alta(pantalla,CANTPANTALLAS,posicionPantalla)==0)
+                {
+                    pantalla_id++; //ponerlo en una funcion
+                    pantalla[posicionPantalla].idPantalla=pantalla_id; //ponerlo en una funcion
+                    //pantalla_generadorId(pantalla,posicionPantalla,&pantalla_id);
+                    pantalla[posicionPantalla].isEmpty=0;
+                }
+            }
             break;
 
         case 2:
 
             if(pantalla_buscar(pantalla,CANTPANTALLAS,"\ningrese el ID de la pantalla que desea modificar: ","\nError, vuelva a ingresar un ID correcto",1,10000,5, &posicionEncontrada)==0)
             {
-                printf("\nSe encontro el id buscado: %d", pantalla[posicionEncontrada].idPantalla);
+                pantalla_modificar(pantalla,CANTPANTALLAS,posicionEncontrada);
             }
-
 
             break;
 
