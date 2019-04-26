@@ -54,29 +54,35 @@ int pantalla_Alta(Pantalla* pantalla, int cantidad, int posLibre)
     {
         ret=0;
     }
-
     return ret;
 }
 
 int pantalla_asignarPantalla(Pantalla* pantalla, int posLibre)
 {
     int ret=1;
+    int i=3;
     Pantalla auxPantalla;
 
-    printf("\n\n1-Pantallas LCD - Ubicados en paseos comerciales");
-    printf("\n\n2-Pantallas gigantes Led - Ubicadas en la via publica");
-    printf("\n\nIngrese la opcion de la pantalla deseada: ");
+    while (i!=0)
+    {
+        printf("\n\n1-Pantallas LCD - Ubicados en paseos comerciales");
+        printf("\n\n2-Pantallas gigantes Led - Ubicadas en la via publica");
+        printf("\n\nIngrese la opcion de la pantalla deseada: ");
 
-    scanf("%d",&auxPantalla.tipo);
-    if(auxPantalla.tipo==1 || auxPantalla.tipo==2)
-    {
-        pantalla[posLibre].tipo=auxPantalla.tipo;
-        ret=0;
+        scanf("%d",&auxPantalla.tipo);
+        if(auxPantalla.tipo==1 || auxPantalla.tipo==2)
+        {
+            pantalla[posLibre].tipo=auxPantalla.tipo;
+            ret=0;
+            break;
+        }
+        else
+        {
+            printf("No ingreso ni 1 ni 2 ");
+            i--;
+        }
     }
-    else
-    {
-        printf("No ingreso ni 1 ni 2 ");
-    }
+
 
     return ret;
 }
@@ -106,13 +112,13 @@ void pantalla_mostrar (Pantalla* pantalla, int cantidad)
             }
             else
             {
-                printf("\nTipo: Pantalla gigantes LED");
+                printf("\nTipo: Pantalla gigante LED");
             }
         }
     }
 }
 
-int pantalla_buscar(Pantalla* pantalla, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve)
+int pantalla_buscarPorId(Pantalla* pantalla, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve)
 {
     int ret=1;
     Pantalla auxPantalla;
@@ -132,7 +138,7 @@ int pantalla_buscar(Pantalla* pantalla, int cantidad,char* mensaje,char*mensajeE
     return ret;
 }
 
-void pantalla_modificar(Pantalla* pantalla, int cantidad, int posicion)
+void pantalla_modificar(Pantalla* pantalla, int posicion)
 {
     char seguir='s'; //MENU
     int opcion; //MENU
@@ -211,4 +217,9 @@ void pantalla_modificar(Pantalla* pantalla, int cantidad, int posicion)
         }
 
     }
+}
+
+void pantalla_baja(Pantalla* pantalla, int posicion)
+{
+    pantalla[posicion].isEmpty=1;
 }

@@ -15,10 +15,12 @@ int main()
     char seguir='s'; //MENU
     int opcion; //MENU
     int posicionPantalla;
+    int posicionPublicidad;
     Pantalla pantalla[CANTPANTALLAS];
     Publicidad publicidad[CANCONTRATACIONES];
     int pantalla_id=0;
     int posicionEncontrada;
+    char elecccionBorrar;
 
     if (pantalla_Inicializar(pantalla, CANTPANTALLAS)==0)
     {
@@ -63,9 +65,7 @@ int main()
             {
                 if (pantalla_Alta(pantalla,CANTPANTALLAS,posicionPantalla)==0)
                 {
-                    pantalla_id++; //ponerlo en una funcion
-                    pantalla[posicionPantalla].idPantalla=pantalla_id; //ponerlo en una funcion
-                    //pantalla_generadorId(pantalla,posicionPantalla,&pantalla_id);
+                    pantalla_generadorId(pantalla,posicionPantalla,&pantalla_id);
                     pantalla[posicionPantalla].isEmpty=0;
                 }
             }
@@ -73,21 +73,50 @@ int main()
 
         case 2:
 
-            if(pantalla_buscar(pantalla,CANTPANTALLAS,"\ningrese el ID de la pantalla que desea modificar: ","\nError, vuelva a ingresar un ID correcto",1,10000,5, &posicionEncontrada)==0)
+            if(pantalla_buscarPorId(pantalla,CANTPANTALLAS,"\ningrese el ID de la pantalla que desea modificar: ","\nError, vuelva a ingresar un ID correcto",1,10000,5, &posicionEncontrada)==0)
             {
-                pantalla_modificar(pantalla,CANTPANTALLAS,posicionEncontrada);
+                pantalla_modificar(pantalla, posicionEncontrada);
             }
-
             break;
 
         case 3:
 
+            if(pantalla_buscarPorId(pantalla,CANTPANTALLAS,"\ningrese el ID de la pantalla que desea eliminar: ","\nError, vuelva a ingresar un ID correcto",1,10000,5, &posicionEncontrada)==0)
+            {
+                do{
+                    printf("\n\nSeguro que desea eliminar? (s/n): ");
+                    __fpurge(stdin);
+                    scanf("%c",&elecccionBorrar);
+
+                    if(elecccionBorrar=='s')
+                    {
+                        pantalla_baja(pantalla,posicionEncontrada);
+                        printf("\n\nBORRADO CON EXITO\n\n");
+                    }
+
+                }while(elecccionBorrar!='s' && elecccionBorrar!='n');
+            }
             break;
+
         case 4:
 
+            pantalla_mostrar(pantalla,CANTPANTALLAS);
 
+            if(publicidad_buscarLibre(publicidad,CANTPANTALLAS,&posicionPublicidad)!=0)
+            {
+                printf("Se encuentra lleno\n\n");
+            }
+            else
+            {
+                if (publicidad_Alta(publicidad,CANCONTRATACIONES,posicionPublicidad)==0)
+                {
 
+                    publicidad_generadorId(pantalla,posicionPantalla,&pantalla_id);
+                    publicidad[posicionPublicidad].isEmpty=0;
+                }
+            }
             break;
+
 
         case 5:
 

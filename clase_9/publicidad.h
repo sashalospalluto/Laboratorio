@@ -13,6 +13,10 @@ int idPantalla;
 
 
 int publicidad_Inicializar(Publicidad* publicidad, int cantidad);
+int publicidad_buscarLibre(Publicidad* publicidad, int cantidad, int* devuelve);
+int publicidad_Alta(Publicidad* publicidad, int cantidad, int posLibre);
+int publicidad_buscarPorId(Publicidad* publicidad, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve);
+
 
 
 #endif // PUBLICIDAD_H_INCLUDED

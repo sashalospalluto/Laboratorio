@@ -102,14 +102,14 @@
 
 1556220596 /home/alumno/Documentos/Laboratorio-master/clase_9/publicidad.h
 
-1556235404 /home/alumno/Documentos/Laboratorio-master/clase_9/pantalla.h
+1556237760 /home/alumno/Documentos/Laboratorio-master/clase_9/pantalla.h
 
 1556220596 /home/alumno/Documentos/Laboratorio-master/clase_9/empleado.h
 
 1556230543 /home/alumno/Documentos/Laboratorio-master/clase_9/funciones_string.h
 	"empleado.h"
 
-1556233842 source:/home/alumno/Documentos/Laboratorio-master/clase_9/funciones_string.c
+1556237760 source:/home/alumno/Documentos/Laboratorio-master/clase_9/funciones_string.c
 	<stdio.h>
 	<stdlib.h>
 	<stdio_ext.h>
@@ -120,7 +120,7 @@
 	<string.h>
 	<ctype.h>
 
-1556235404 source:/home/alumno/Documentos/Laboratorio-master/clase_9/main.c
+1556237965 source:/home/alumno/Documentos/Laboratorio-master/clase_9/main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdio_ext.h>
@@ -131,9 +131,10 @@
 	<string.h>
 	<ctype.h>
 
-1556233024 source:/home/alumno/Documentos/Laboratorio-master/clase_9/pantalla.c
+1556237965 source:/home/alumno/Documentos/Laboratorio-master/clase_9/pantalla.c
 	<stdio.h>
 	<stdlib.h>
+	<stdio_ext.h>
 	"publicidad.h"
 	"pantalla.h"
 	"empleado.h"

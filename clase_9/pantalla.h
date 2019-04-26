@@ -13,12 +13,13 @@ int tipo;
 }Pantalla;
 
 int pantalla_Inicializar(Pantalla* pantalla, int cantidad);
-int pantalla_buscar(Pantalla* pantalla, int cantidad,char* mensaje, char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve);
+int pantalla_buscarPorId(Pantalla* pantalla, int cantidad,char* mensaje, char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve);
 int pantalla_buscarLibre(Pantalla* pantalla, int cantidad, int* devuelve);
 int pantalla_Alta(Pantalla* pantalla, int cantidad, int posLibre);
 int pantalla_asignarPantalla(Pantalla* pantalla, int posLibre);
 void pantalla_generadorId(Pantalla* pantalla,int pos, int* id);
 void pantalla_mostrar (Pantalla* pantalla, int cantidad);
-void pantalla_modificar(Pantalla* pantalla, int cantidad, int posicion);
+void pantalla_modificar(Pantalla* pantalla, int posicion);
+void pantalla_baja(Pantalla* pantalla, int posicion);
 
 #endif // PANTALLA_H_INCLUDED
