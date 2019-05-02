@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio_ext.h> //linux
+//#include <stdio_ext.h> //linux
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -22,9 +22,9 @@ int pantalla_Inicializar(Pantalla* pantalla, int cantidad)
     return ret;
 }
 
-int pantalla_buscarLibre(Pantalla* pantalla, int cantidad, int* devuelve)
+int pantalla_buscarLibre(Pantalla * pantalla, int cantidad, int * devuelve)
 {
-    int ret;
+    int ret=1;
     for (int i=0; i<cantidad; i++)
     {
         if (pantalla[i].isEmpty==1)
@@ -33,35 +33,58 @@ int pantalla_buscarLibre(Pantalla* pantalla, int cantidad, int* devuelve)
             ret=0;
             break;
         }
-
-        ret=1;
     }
-
     return ret;
 }
 
-int pantalla_Alta(Pantalla* pantalla, int cantidad, int posLibre)
+int pantalla_Alta(Pantalla* pantalla, int cantidad, int* posLibre,int *pantalla_id)
 {
+    //Pantalla auxPantalla[cantidad];
+
+    char nombre[50];
+    char direccion [200];
+    float precio;
+    int tipo;
     int ret=1;
-    printf("\n\n\tCARGA DE DATOS\n\n");
-    if(getString(pantalla[posLibre].nombre,"\nIngrese nombre :", "\nNo ingreso correctamente ",3,50,3)==0 &&
 
-            getString(pantalla[posLibre].direccion, "\nIngrese Direccion: ", "\nError de ingreso ",3,200,3)==0 &&
-
-            utn_getFloat(&pantalla[posLibre].precio, "\nIngrese precio: ", "\nError de ingreso ",2,100000000,3)==0 &&
-
-            pantalla_asignarPantalla(pantalla,posLibre)==0)
+    if(pantalla_buscarLibre(pantalla,cantidad,&posLibre)!=0)
     {
-        ret=0;
+        printf("Se encuentra lleno\n\n");
+    }
+    else
+    {
+        printf("\n\n\tCARGA DE DATOS\n\n");
+        if(getString(nombre,"\nIngrese nombre :", "\nNo ingreso correctamente ",3,50,3)==0 &&
+
+                getString(direccion, "\nIngrese Direccion: ", "\nError de ingreso ",3,200,3)==0 &&
+
+                utn_getFloat(&precio, "\nIngrese precio: ", "\nError de ingreso ",2,100000000,3)==0 &&
+
+                pantalla_asignarPantalla(&tipo)==0)
+        {
+            pantalla_cargarArray(pantalla,posLibre,tipo, nombre, direccion,precio);
+            pantalla_generadorId(pantalla,posLibre,pantalla_id);
+            ret=0;
+        }
     }
     return ret;
 }
 
-int pantalla_asignarPantalla(Pantalla* pantalla, int posLibre)
+void pantalla_cargarArray(Pantalla * pantalla,int posLibre, int tipoPantalla, char nombre[50],char direccion[200], float precio)
+{
+
+    //pantalla[posLibre].idPantalla=
+    strcpy(pantalla[posLibre].nombre,nombre);
+    strcpy(pantalla[posLibre].direccion,direccion);
+    pantalla[posLibre].precio=precio;
+    pantalla[posLibre].tipo=tipoPantalla;
+    pantalla[posLibre].isEmpty=0;
+}
+int pantalla_asignarPantalla(int* tipoPantalla)
 {
     int ret=1;
     int i=3;
-    Pantalla auxPantalla;
+    int auxTipo;
 
     while (i!=0)
     {
@@ -69,10 +92,10 @@ int pantalla_asignarPantalla(Pantalla* pantalla, int posLibre)
         printf("\n\n2-Pantallas gigantes Led - Ubicadas en la via publica");
         printf("\n\nIngrese la opcion de la pantalla deseada: ");
 
-        scanf("%d",&auxPantalla.tipo);
-        if(auxPantalla.tipo==1 || auxPantalla.tipo==2)
+        scanf("%d",&auxTipo);
+        if(auxTipo==1 || auxTipo==2)
         {
-            pantalla[posLibre].tipo=auxPantalla.tipo;
+            *tipoPantalla=auxTipo;
             ret=0;
             break;
         }
@@ -82,8 +105,6 @@ int pantalla_asignarPantalla(Pantalla* pantalla, int posLibre)
             i--;
         }
     }
-
-
     return ret;
 }
 
@@ -142,6 +163,7 @@ void pantalla_modificar(Pantalla* pantalla, int posicion)
 {
     char seguir='s'; //MENU
     int opcion; //MENU
+    int tipoPantalla;
 
     while (seguir=='s')
     {
@@ -200,8 +222,9 @@ void pantalla_modificar(Pantalla* pantalla, int posicion)
 
             case 4:
 
-                if(pantalla_asignarPantalla(pantalla,posicion)==0)
+                if(pantalla_asignarPantalla(&tipoPantalla)==0)
                 {
+                    pantalla[posicion].tipo=tipoPantalla;
                     printf("Pantalla modificada con exito!\n\n");
                 }
                 else
@@ -213,13 +236,26 @@ void pantalla_modificar(Pantalla* pantalla, int posicion)
             case 5:
                 seguir='f';
                 break;
+        }
+    }
+}
+void pantalla_baja(Pantalla* pantalla, int posicion)
+{
+    char elecccionBorrar;
+    do
+    {
+        printf("\n\nSeguro que desea eliminar? (s/n): ");
+        //__fpurge(stdin);
+        fflush( stdin ); //LIMPIA BUFFER WINDOWS
+        scanf("%c",&elecccionBorrar);
 
+        if(elecccionBorrar=='s')
+        {
+            pantalla[posicion].isEmpty=1;
+            printf("\n\nBORRADO CON EXITO\n\n");
         }
 
     }
-}
-
-void pantalla_baja(Pantalla* pantalla, int posicion)
-{
+    while(elecccionBorrar!='s' && elecccionBorrar!='n');
     pantalla[posicion].isEmpty=1;
 }

@@ -152,3 +152,63 @@
 	<string.h>
 	<ctype.h>
 
+1556472492 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556687664 c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\publicidad.h
+	"pantalla.h"
+
+1556664171 c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\pantalla.h
+
+1556472492 c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\empleado.h
+
+1556472492 c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\funciones_string.h
+	"empleado.h"
+
+1556668000 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556688733 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\publicidad.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556474001 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556687662 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\main.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio_ext.h> //linux
+//#include <stdio_ext.h> //linux
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -35,8 +35,8 @@ int getString(char *pResult, char *pMsg, char *pMsgError, int min, int max, int 
     while(intentos>0)
     {
         printf(pMsg);
-        //fflush( stdin ); //LIMPIA BUFFER WINDOWS
-        __fpurge(stdin); //LIMPIA BUFFER LINUX
+        fflush( stdin ); //LIMPIA BUFFER WINDOWS
+        //__fpurge(stdin); //LIMPIA BUFFER LINUX
         fgets(arrayAuxiliar,sizeof(arrayAuxiliar),stdin);
         arrayAuxiliar[strlen(arrayAuxiliar)-1] = '\0';
         if( pResult != NULL && strlen(arrayAuxiliar) >= min && strlen(arrayAuxiliar) <= max /*&& validarLetra(arrayAuxiliar)==0*/)
@@ -82,8 +82,8 @@ int getStringConNum(char *pResult, char *pMsg, char *pMsgError, int min, int max
     while(intentos>0)
     {
         printf(pMsg);
-        //fflush( stdin ); //LIMPIA BUFFER WINDOWS
-        __fpurge(stdin); //LIMPIA BUFFER LINUX
+        fflush( stdin ); //LIMPIA BUFFER WINDOWS
+        //__fpurge(stdin); //LIMPIA BUFFER LINUX
 
         fgets(arrayAuxiliar,sizeof(arrayAuxiliar),stdin);
         arrayAuxiliar[strlen(arrayAuxiliar)-1] = '\0';
@@ -106,8 +106,8 @@ int getStringConNum(char *pResult, char *pMsg, char *pMsgError, int min, int max
 int utn_getFloat(float *pResultado,const char *mensaje,const char *mensajeError,int minimo,int maximo,int reintentos)
 {
 
-    //fflush( stdin ); //LIMPIA BUFFER WINDOWS
-    __fpurge(stdin); //LIMPIA BUFFER LINUX
+    fflush( stdin ); //LIMPIA BUFFER WINDOWS
+    //__fpurge(stdin); //LIMPIA BUFFER LINUX
     int ret;
     float num;
     while (reintentos>0)
@@ -120,8 +120,8 @@ int utn_getFloat(float *pResultado,const char *mensaje,const char *mensajeError,
                 break;
             }
         }
-        //fflush( stdin ); //LIMPIA BUFFER WINDOWS
-        __fpurge(stdin); //LIMPIA BUFFER LINUX
+        fflush( stdin ); //LIMPIA BUFFER WINDOWS
+        //__fpurge(stdin); //LIMPIA BUFFER LINUX
         reintentos--;
         printf("%s\n",mensajeError);
     }
