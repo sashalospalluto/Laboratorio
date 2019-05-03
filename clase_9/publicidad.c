@@ -46,12 +46,12 @@ void publicidad_generadorId(Publicidad* publicidad,int pos, int* id)
 int publicidad_Alta(Publicidad* publicidad, int cantidad, int* posLibre, int* idPublicidad, Pantalla* pantalla, int cantPantalla)
 {
     int ret=1;
-    char cuit[20];
+    char cuit[32];
     int dias;
     char archivo[25];
     int idPantalla;
 
-    if (publicidad_buscarLibre(publicidad,cantidad,&posLibre)!=0)
+    if (publicidad_buscarLibre(publicidad,cantidad,posLibre)!=0)
     {
         printf("Se encuentra lleno");
     }
@@ -61,18 +61,18 @@ int publicidad_Alta(Publicidad* publicidad, int cantidad, int* posLibre, int* id
         {
             printf("\n\n\tCARGA DE DATOS\n\n");
 
-            if(getStringConNum(cuit,"\n\nIngrese el cuit del cliente","\n\nNo ingreso correctamente",1,20,5)==0 &&
+            if(getStringConNum(cuit,"\n\nIngrese el cuit del cliente","\n\nNo ingreso correctamente",2,25,3)==0 &&
 
              getNumber(&dias,"\n\nIngrese la cantidad de dias", "\n\nerror al ingresar los dias",1,50,5)==0 &&
 
-             getStringConNum(archivo, "\n\nIngrese el nombre del archivo: ", "\n\nerror al ingrresar el nombre de archivo",2,50,3)==0)
+             getStringConNum(archivo, "\n\nIngrese el nombre del archivo: ", "\n\nerror al ingrresar el nombre de archivo",2,25,3)==0)
              {
                  printf("\nCUIT %s",cuit);
                  printf("\nDIAS %d",dias);
                  printf("\nARCHIVO %s",archivo);
 
-               publicidad_cargarArray(publicidad,posLibre,cuit,dias,archivo,idPantalla);
-               publicidad_generadorId(publicidad,posLibre,idPublicidad);
+               publicidad_cargarArray(publicidad,*posLibre,cuit,dias,archivo,idPantalla);
+               publicidad_generadorId(publicidad,*posLibre,idPublicidad);
                 ret=0;
              }
         }
@@ -117,31 +117,93 @@ void publicidad_mostrar(Publicidad* publicidad, Pantalla* pantalla, int cantPubl
     {
         if (publicidad[i].isEmpty==0)
         {
-            pos=i;
+            //pos=i;
             printf("\n\n\nid publicidad: %d", publicidad[i].idPublicidad);
             printf("\nisEmpty: %d",publicidad[i].isEmpty);
-            //publicidad_buscarNombrePantalla(pantalla, publicidad,&pos,cantPantalla);
-            //printf("\nnombre de la pantalla: %s",pantalla[pos].nombre);
+            pantalla_buscarPorId2(pantalla,cantPantalla,publicidad[i].idPantalla,&pos);
+            printf("\n%d",pos);
+            printf("\nnombre de la pantalla: %s",pantalla[pos].nombre);
             printf("\nCUIT: %s",publicidad[i].cuit);
             printf("\nDias de contracion: %d",publicidad[i].dias);
+            printf("\nARCHIVO: %s",publicidad[i].archivo);
         }
     }
 }
 
-void publicidad_buscarNombrePantalla (Pantalla* pantalla, Publicidad* publicidad, int* posNombre, int cantidad)
+void publicidad_buscarPublicidad(Publicidad* publicidad, int cantidad)
 {
-    int posi;
-    posi=posNombre;
+    char cuit [20];
+    int posCuit;
+    //fflush( stdin ); //LIMPIA BUFFER WINDOWS
+    __fpurge(stdin); //LIMPIA BUFFER LINUX
+    printf("\nIngrese el cuit de la publicidad que desea modificar: ");
+    fgets(cuit,sizeof(cuit),stdin);
+    if (publicidad_buscarPorCuit(publicidad, cantidad,cuit, &posCuit)==0)
+    {
+        printf("\nCUIT ENCONTRADO\n");
+    }
+    else
+    {
+        printf("\nNO SE ENCONTRO");
+    }
+}
+
+int publicidad_buscarPorCuit (Publicidad* publicidad,int cantidad,char cuit[20], int* devuelve)
+{
+    int i=0;
+    int ret=1;
+    for(i; i<cantidad;i++)
+    {
+        if(publicidad[i].isEmpty==0)
+        {
+            if(strcmp(publicidad[i].cuit,cuit)==0)
+            {
+                *devuelve=i;
+                ret=0;
+                break;
+            }
+        }
+    }
+
+    return ret;
+}
+
+/*
+void publicidad_buscarPantallaPorId(Pantalla* pantalla, Publicidad* publicidad, int* posNombre, int cantidad)
+{
+    int pos;
+    pos=posNombre;
     for (int i=0;i<cantidad;i++)
     {
-        if(publicidad[posi].idPantalla == pantalla[i].idPantalla)
+        if(publicidad[pos].idPantalla == pantalla[i].idPantalla)
         {
             *posNombre=i;
             break;
         }
     }
 }
+*/
 
+/*
+int publicidad_buscarPorId(Publicidad* publicidad, int cantidad,int* devuelve,int id)
+{
+    int ret=1;
+
+    for (int i=0;i<cantidad;i++)
+    {
+        if(publicidad[i].isEmpty == 0)
+        {
+            if(publicidad[i].idPublicidad == id)
+            {
+                ret=0;
+                *devuelve=i;
+            }
+        }
+    }
+
+    return ret;
+}
+*/
 
 
 

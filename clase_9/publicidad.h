@@ -21,6 +21,7 @@ void publicidad_cargarArray(Publicidad * publicidad,int posLibre, char cuit[20],
 void publicidad_buscarNombrePantalla (Pantalla* pantalla, Publicidad* publicidad, int* posNombre, int cantidad);
 int publicidad_buscarPorId(Publicidad* publicidad, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve);
 void publicidad_mostrar(Publicidad* publicidad, Pantalla* pantalla, int cantPublicidad,int cantPantalla);
-
+int publicidad_buscarPorCuit (Publicidad* publicidad,int cantidad,char cuit[20], int* devuelve);
+void publicidad_buscarPublicidad(Publicidad* publicidad, int cantidad);
 
 #endif // PUBLICIDAD_H_INCLUDED

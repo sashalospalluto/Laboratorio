@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <stdio_ext.h> //linux
+#include <stdio_ext.h> //linux
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -47,7 +47,7 @@ int pantalla_Alta(Pantalla* pantalla, int cantidad, int* posLibre,int *pantalla_
     int tipo;
     int ret=1;
 
-    if(pantalla_buscarLibre(pantalla,cantidad,&posLibre)!=0)
+    if(pantalla_buscarLibre(pantalla,cantidad,posLibre)!=0)
     {
         printf("Se encuentra lleno\n\n");
     }
@@ -62,8 +62,7 @@ int pantalla_Alta(Pantalla* pantalla, int cantidad, int* posLibre,int *pantalla_
 
                 pantalla_asignarPantalla(&tipo)==0)
         {
-            pantalla_cargarArray(pantalla,posLibre,tipo, nombre, direccion,precio);
-            pantalla_generadorId(pantalla,posLibre,pantalla_id);
+            pantalla_cargarArray(pantalla,*posLibre,tipo, nombre, direccion,precio);
             ret=0;
         }
     }
@@ -74,11 +73,15 @@ void pantalla_cargarArray(Pantalla * pantalla,int posLibre, int tipoPantalla, ch
 {
 
     //pantalla[posLibre].idPantalla=
+
     strcpy(pantalla[posLibre].nombre,nombre);
     strcpy(pantalla[posLibre].direccion,direccion);
     pantalla[posLibre].precio=precio;
     pantalla[posLibre].tipo=tipoPantalla;
     pantalla[posLibre].isEmpty=0;
+
+    pantalla_generadorId(pantalla,posLibre);
+
 }
 int pantalla_asignarPantalla(int* tipoPantalla)
 {
@@ -108,10 +111,10 @@ int pantalla_asignarPantalla(int* tipoPantalla)
     return ret;
 }
 
-void pantalla_generadorId(Pantalla* pantalla,int pos, int* id)
+void pantalla_generadorId(Pantalla* pantalla,int pos)
 {
-    (*id)++;
-    pantalla[pos].idPantalla=*id;
+    static int id=1;
+    pantalla[pos].idPantalla=id++;
 }
 
 void pantalla_mostrar (Pantalla* pantalla, int cantidad)
@@ -126,6 +129,7 @@ void pantalla_mostrar (Pantalla* pantalla, int cantidad)
             printf("\nnombre: %s",pantalla[i].nombre);
             printf("\ndireccion: %s",pantalla[i].direccion);
             printf("\nprecio: %0.2f",pantalla[i].precio);
+            printf("\npos: %d\n",i);
 
             if (pantalla[i].tipo==1)
             {
@@ -155,7 +159,6 @@ int pantalla_buscarPorId(Pantalla* pantalla, int cantidad,char* mensaje,char*men
             }
         }
     }
-
     return ret;
 }
 
@@ -245,8 +248,8 @@ void pantalla_baja(Pantalla* pantalla, int posicion)
     do
     {
         printf("\n\nSeguro que desea eliminar? (s/n): ");
-        //__fpurge(stdin);
-        fflush( stdin ); //LIMPIA BUFFER WINDOWS
+        __fpurge(stdin);
+        //fflush( stdin ); //LIMPIA BUFFER WINDOWS
         scanf("%c",&elecccionBorrar);
 
         if(elecccionBorrar=='s')
@@ -258,4 +261,23 @@ void pantalla_baja(Pantalla* pantalla, int posicion)
     }
     while(elecccionBorrar!='s' && elecccionBorrar!='n');
     pantalla[posicion].isEmpty=1;
+}
+
+
+int pantalla_buscarPorId2(Pantalla* pantalla, int cantidad,int id, int* devuelve)
+{
+    int ret=1;
+    for (int i=0;i<cantidad;i++)
+    {
+        if(pantalla[i].isEmpty==0)
+        {
+            if(pantalla[i].idPantalla==id)
+            {
+                ret=0;
+                *devuelve=i;
+            }
+        }
+    }
+
+    return ret;
 }

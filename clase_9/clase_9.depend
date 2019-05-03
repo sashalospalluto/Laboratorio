@@ -7,7 +7,7 @@
 	<string.h>
 	<ctype.h>
 
-1556219882 
+1556687662 
 
 1556146664 /home/alumno/Documentos/revainera/clase_9/publicidad.h
 
@@ -48,7 +48,7 @@
 1556217896 c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\funciones_string.h
 	"empleado.h"
 
-1556217896 h"
+1556472492 h"
 
 1556220275 source:c:\users\leo\desktop\sasha\programacion_laboratorio-1-master\clase_9\main.c
 	<stdio.h>
@@ -203,6 +203,195 @@
 	<ctype.h>
 
 1556687662 source:c:\users\sashaoriana\documents\utn2019\laboratorio\clase_9\main.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556824886 source:/home/alumno/Documentos/Laboratorio-master/clase_9/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556824886 /home/alumno/Documentos/Laboratorio-master/clase_9/publicidad.h
+	"pantalla.h"
+
+1556839806 /home/alumno/Documentos/Laboratorio-master/clase_9/pantalla.h
+
+1556824886 /home/alumno/Documentos/Laboratorio-master/clase_9/empleado.h
+
+1556824886 /home/alumno/Documentos/Laboratorio-master/clase_9/funciones_string.h
+	"empleado.h"
+
+1556837941 source:/home/alumno/Documentos/Laboratorio-master/clase_9/funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556839892 source:/home/alumno/Documentos/Laboratorio-master/clase_9/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556840339 source:/home/alumno/Documentos/Laboratorio-master/clase_9/pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556837898 source:/home/alumno/Documentos/Laboratorio-master/clase_9/publicidad.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556840403 source:/home/profesor/Descargas/clase_9/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556840403 /home/profesor/Descargas/clase_9/publicidad.h
+	"pantalla.h"
+
+1556842366 /home/profesor/Descargas/clase_9/pantalla.h
+
+1556840403 /home/profesor/Descargas/clase_9/empleado.h
+
+1556840403 /home/profesor/Descargas/clase_9/funciones_string.h
+	"empleado.h"
+
+1556840403 source:/home/profesor/Descargas/clase_9/funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556840403 source:/home/profesor/Descargas/clase_9/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556842382 source:/home/profesor/Descargas/clase_9/pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556842683 source:/home/profesor/Descargas/clase_9/publicidad.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556842925 source:/home/alumno/Documentos/clase_9_fix/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556844390 /home/alumno/Documentos/clase_9_fix/publicidad.h
+	"pantalla.h"
+
+1556842925 /home/alumno/Documentos/clase_9_fix/pantalla.h
+
+1556842925 /home/alumno/Documentos/clase_9_fix/empleado.h
+
+1556842925 /home/alumno/Documentos/clase_9_fix/funciones_string.h
+	"empleado.h"
+
+1556842925 source:/home/alumno/Documentos/clase_9_fix/funciones_string.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556844949 source:/home/alumno/Documentos/clase_9_fix/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556844737 source:/home/alumno/Documentos/clase_9_fix/pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"publicidad.h"
+	"pantalla.h"
+	"empleado.h"
+	"funciones_string.h"
+	<string.h>
+	<ctype.h>
+
+1556846059 source:/home/alumno/Documentos/clase_9_fix/publicidad.c
 	<stdio.h>
 	<stdlib.h>
 	"publicidad.h"

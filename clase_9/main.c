@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <stdio_ext.h> //LINUX
+#include <stdio_ext.h> //LINUX
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -9,6 +9,7 @@
 #include <ctype.h>
 #define CANTPANTALLAS 100
 #define CANCONTRATACIONES 1000
+
 
 int main()
 {
@@ -23,6 +24,7 @@ int main()
     int publicidad_id=0;
     int posicionEncontrada;
 
+
     if (pantalla_Inicializar(pantalla, CANTPANTALLAS)==0)
     {
         printf("Se inicializo correctamente pantalla\n");
@@ -32,6 +34,14 @@ int main()
         printf("Se inicializo correctamente publicidad\n");
     }
 
+    pantalla_cargarArray(pantalla,0,1,"sasha","estrada 123",123);
+
+    pantalla_cargarArray(pantalla,1,1,"Mati","pichincha 12",120);
+
+    pantalla_cargarArray(pantalla,2,1,"sandra","medrano",12.5);
+    //pantalla_cargarArray(pantalla,1,1,"sasha","mi mami",123);
+    //pantalla_generadorId(pantalla,1,1);
+
     while (seguir=='s')
     {
         printf("\n\t\tMENU");
@@ -39,8 +49,8 @@ int main()
         printf("\n\n2-Modificar datos de pantalla");
         printf("\n\n3-Baja de pantalla");
         printf("\n\n4-Contratar una publicidad");
-     /* printf("\n\n5-Modificar condiciones de publicacion");
-        printf("\n\n6-Cancelar contratacion");
+        printf("\n\n5-Modificar condiciones de publicacion");
+      /*   printf("\n\n6-Cancelar contratacion");
         printf("\n\n7-Consulta facturacion");
      */ printf("\n\n8-Listar contrataciones");
       printf("\n\n9-Listar pantallas");
@@ -60,6 +70,7 @@ int main()
 
                 if (pantalla_Alta(pantalla,CANTPANTALLAS,&posicionPantalla,&pantalla_id)==0)
                 {
+                    printf("\n%d",posicionPantalla);
                     printf("\nDatos cargados correctamente\n");
                 }
                 else
@@ -105,9 +116,9 @@ int main()
 
         case 5:
 
-
-
+            publicidad_buscarPublicidad(publicidad,CANCONTRATACIONES);
             break;
+
         case 6:
 
             break;
