@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio_ext.h> //linux
+//#include <stdio_ext.h> //linux
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -248,7 +248,7 @@ void pantalla_baja(Pantalla* pantalla, int posicion)
     do
     {
         printf("\n\nSeguro que desea eliminar? (s/n): ");
-        __fpurge(stdin);
+       // __fpurge(stdin);
         //fflush( stdin ); //LIMPIA BUFFER WINDOWS
         scanf("%c",&elecccionBorrar);
 
@@ -257,10 +257,8 @@ void pantalla_baja(Pantalla* pantalla, int posicion)
             pantalla[posicion].isEmpty=1;
             printf("\n\nBORRADO CON EXITO\n\n");
         }
-
     }
     while(elecccionBorrar!='s' && elecccionBorrar!='n');
-    pantalla[posicion].isEmpty=1;
 }
 
 
@@ -275,9 +273,28 @@ int pantalla_buscarPorId2(Pantalla* pantalla, int cantidad,int id, int* devuelve
             {
                 ret=0;
                 *devuelve=i;
+                break;
             }
         }
     }
+    return ret;
+}
 
+int pantalla_buscaYdevuelveId(Pantalla* pantalla, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelveId)
+{
+    int ret=1;
+    Pantalla auxPantalla;
+    if(getNumber(&(auxPantalla.idPantalla),mensaje,mensajeError,minimo,maximo,reintentos)==0)
+    {
+
+        for (int i=0;i<cantidad;i++)
+        {
+            if(pantalla[i].idPantalla==auxPantalla.idPantalla)
+            {
+                ret=0;
+                *devuelveId=auxPantalla.idPantalla;
+            }
+        }
+    }
     return ret;
 }

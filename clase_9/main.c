@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio_ext.h> //LINUX
+//#include <stdio_ext.h> //LINUX
 #include "publicidad.h"
 #include "pantalla.h"
 #include "empleado.h"
@@ -33,14 +33,16 @@ int main()
     {
         printf("Se inicializo correctamente publicidad\n");
     }
+    //HARDCODEO PANTALLA
+    pantalla_cargarArray(pantalla,0,1,"obelisco","diagonal norte 20",123);
+    pantalla_cargarArray(pantalla,1,1,"catedral","lujan 500",120);
+    pantalla_cargarArray(pantalla,2,1,"cordoba","carlos paz 1789",12.5);
 
-    pantalla_cargarArray(pantalla,0,1,"sasha","estrada 123",123);
-
-    pantalla_cargarArray(pantalla,1,1,"Mati","pichincha 12",120);
-
-    pantalla_cargarArray(pantalla,2,1,"sandra","medrano",12.5);
-    //pantalla_cargarArray(pantalla,1,1,"sasha","mi mami",123);
-    //pantalla_generadorId(pantalla,1,1);
+    //HARDCODEO PUBLICIDAD
+    publicidad_cargarArray(publicidad,0,"40422602",10,"dnisasha.txt",3);
+    publicidad_cargarArray(publicidad,1,"21439586",11,"dniwalter.txt",2);
+    publicidad_cargarArray(publicidad,2,"40547247",30,"dnijuan.txt",1);
+    publicidad_cargarArray(publicidad,3,"40422602",29,"dniduplicado.txt",1);
 
     while (seguir=='s')
     {
@@ -50,10 +52,10 @@ int main()
         printf("\n\n3-Baja de pantalla");
         printf("\n\n4-Contratar una publicidad");
         printf("\n\n5-Modificar condiciones de publicacion");
-      /*   printf("\n\n6-Cancelar contratacion");
+        printf("\n\n6-Cancelar contratacion");
         printf("\n\n7-Consulta facturacion");
-     */ printf("\n\n8-Listar contrataciones");
-      printf("\n\n9-Listar pantallas");
+        printf("\n\n8-Listar contrataciones");
+        printf("\n\n9-Listar pantallas");
      //   printf("\n\n10-Informar");
         printf("\n\n11-Salir\n");
 
@@ -70,7 +72,6 @@ int main()
 
                 if (pantalla_Alta(pantalla,CANTPANTALLAS,&posicionPantalla,&pantalla_id)==0)
                 {
-                    printf("\n%d",posicionPantalla);
                     printf("\nDatos cargados correctamente\n");
                 }
                 else
@@ -116,13 +117,14 @@ int main()
 
         case 5:
 
-            publicidad_buscarPublicidad(publicidad,CANCONTRATACIONES);
+            publicidad_buscarPublicidad(publicidad,CANCONTRATACIONES,pantalla,CANTPANTALLAS);
             break;
 
         case 6:
-
+            publicidad_cancelarContratacion(publicidad,CANCONTRATACIONES,pantalla,CANTPANTALLAS);
             break;
         case 7:
+            publicidad_facturacion(publicidad,CANCONTRATACIONES,pantalla,CANTPANTALLAS);
             break;
 
         case 8:
@@ -135,9 +137,9 @@ int main()
             pantalla_mostrar(pantalla,CANTPANTALLAS);
 
             break;
- //       case 10:
+        case 10:
 
-  //      break;
+        break;
 
         case 11:
             seguir='f';

@@ -37,10 +37,10 @@ int publicidad_buscarLibre(Publicidad* publicidad, int cantidad, int* devuelve)
     return ret;
 }
 
-void publicidad_generadorId(Publicidad* publicidad,int pos, int* id)
+void publicidad_generadorId(Publicidad* publicidad,int pos)
 {
-    (*id)++;
-    publicidad[pos].idPublicidad=*id;
+    static int id=1;
+    publicidad[pos].idPublicidad=id++;
 }
 
 int publicidad_Alta(Publicidad* publicidad, int cantidad, int* posLibre, int* idPublicidad, Pantalla* pantalla, int cantPantalla)
@@ -57,11 +57,11 @@ int publicidad_Alta(Publicidad* publicidad, int cantidad, int* posLibre, int* id
     }
     else
     {
-        if (pantalla_buscarPorId(pantalla,cantPantalla,"\n\nIngrese el ID de la pantalla donde desea publicar: ","\n\nerror al ingresar id",1,100,5,&idPantalla)==0)
+        if (pantalla_buscaYdevuelveId(pantalla,cantPantalla,"\n\nIngrese el ID de la pantalla donde desea publicar: ","\n\nerror al ingresar id",1,100,5,&idPantalla)==0)
         {
             printf("\n\n\tCARGA DE DATOS\n\n");
 
-            if(getStringConNum(cuit,"\n\nIngrese el cuit del cliente","\n\nNo ingreso correctamente",2,25,3)==0 &&
+            if(getStringConNum(cuit,"\n\nIngrese el cuit del cliente: ","\n\nNo ingreso correctamente",2,25,3)==0 &&
 
              getNumber(&dias,"\n\nIngrese la cantidad de dias", "\n\nerror al ingresar los dias",1,50,5)==0 &&
 
@@ -72,7 +72,6 @@ int publicidad_Alta(Publicidad* publicidad, int cantidad, int* posLibre, int* id
                  printf("\nARCHIVO %s",archivo);
 
                publicidad_cargarArray(publicidad,*posLibre,cuit,dias,archivo,idPantalla);
-               publicidad_generadorId(publicidad,*posLibre,idPublicidad);
                 ret=0;
              }
         }
@@ -89,6 +88,7 @@ void publicidad_cargarArray(Publicidad * publicidad,int posLibre, char cuit[20],
     publicidad[posLibre].dias=dias;
     publicidad[posLibre].idPantalla=idPantalla;
     publicidad[posLibre].isEmpty=0;
+    publicidad_generadorId(publicidad,posLibre);
 }
 
 int publicidad_buscarPorId(Publicidad* publicidad, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelve)
@@ -121,7 +121,6 @@ void publicidad_mostrar(Publicidad* publicidad, Pantalla* pantalla, int cantPubl
             printf("\n\n\nid publicidad: %d", publicidad[i].idPublicidad);
             printf("\nisEmpty: %d",publicidad[i].isEmpty);
             pantalla_buscarPorId2(pantalla,cantPantalla,publicidad[i].idPantalla,&pos);
-            printf("\n%d",pos);
             printf("\nnombre de la pantalla: %s",pantalla[pos].nombre);
             printf("\nCUIT: %s",publicidad[i].cuit);
             printf("\nDias de contracion: %d",publicidad[i].dias);
@@ -130,80 +129,142 @@ void publicidad_mostrar(Publicidad* publicidad, Pantalla* pantalla, int cantPubl
     }
 }
 
-void publicidad_buscarPublicidad(Publicidad* publicidad, int cantidad)
+void publicidad_buscarPublicidad(Publicidad* publicidad, int cantPublicidad,Pantalla* pantalla, int cantPantalla)
 {
     char cuit [20];
-    int posCuit;
-    //fflush( stdin ); //LIMPIA BUFFER WINDOWS
-    __fpurge(stdin); //LIMPIA BUFFER LINUX
-    printf("\nIngrese el cuit de la publicidad que desea modificar: ");
-    fgets(cuit,sizeof(cuit),stdin);
-    if (publicidad_buscarPorCuit(publicidad, cantidad,cuit, &posCuit)==0)
+    int id;
+    int posId;
+    int dias;
+    fflush( stdin ); //LIMPIA BUFFER WINDOWS
+   // __fpurge(stdin); //LIMPIA BUFFER LINUX
+    if(getStringConNum(cuit,"\nIngrese el cuit de la publicidad que desea modificar: ","error, vuelva a ingresar",2,25,3)==0)
     {
-        printf("\nCUIT ENCONTRADO\n");
+       if (publicidad_buscarPorCuit(publicidad, cantPublicidad,cuit,pantalla, cantPantalla)==0 &&
+           pantalla_buscaYdevuelveId(pantalla,cantPantalla,"ingrese el ID que desea modificar: ", "error, vuelva a ingresar: ",1,50,3,&id)==0 &&
+           publicidad_buscarIdPantalla(publicidad,cantPublicidad,id,&posId)==0 &&
+           getNumber(&dias,"\n\nIngrese la cantidad de dias para esta pantalla: ", "\n\nerror al ingresar los dias: ",1,50,5)==0)
+         {
+             publicidad[posId].dias=dias;
+
+         }
+
+        else
+        {
+            printf("\nNO SE ENCONTRO");
+        }
     }
-    else
-    {
-        printf("\nNO SE ENCONTRO");
-    }
+
 }
 
-int publicidad_buscarPorCuit (Publicidad* publicidad,int cantidad,char cuit[20], int* devuelve)
+int publicidad_buscarPorCuit (Publicidad* publicidad,int cantPublicidad,char cuit[20],Pantalla* pantalla, int cantPantalla)
 {
-    int i=0;
     int ret=1;
-    for(i; i<cantidad;i++)
+    int pos;
+    int contador=1;
+    printf("\n\tPANTALLAS CONTRATADAS POR EL CUIT: %s\n\n",cuit);
+    for(int i=0; i<cantPublicidad;i++)
     {
         if(publicidad[i].isEmpty==0)
         {
-            if(strcmp(publicidad[i].cuit,cuit)==0)
+
+            if(strncmp(publicidad[i].cuit,cuit,20)==0)
             {
-                *devuelve=i;
+                printf("\n\nPantalla: %d\n",contador);
+                contador++;
+                pantalla_buscarPorId2(pantalla,cantPantalla,publicidad[i].idPantalla,&pos);
+                printf("\nid pantalla: %d", pantalla[pos].idPantalla);
+                printf("\nisEmpty: %d",pantalla[pos].isEmpty);
+                printf("\nnombre: %s",pantalla[pos].nombre);
+                printf("\ndireccion: %s",pantalla[pos].direccion);
+                printf("\nprecio: %0.2f",pantalla[pos].precio);
+
+                if (pantalla[pos].tipo==1)
+                {
+                    printf("\nTipo: Pantalla LCD");
+                }
+                else
+                {
+                    printf("\nTipo: Pantalla gigante LED");
+                }
+
                 ret=0;
-                break;
             }
         }
     }
-
     return ret;
 }
 
-/*
-void publicidad_buscarPantallaPorId(Pantalla* pantalla, Publicidad* publicidad, int* posNombre, int cantidad)
+int publicidad_buscarIdPantalla(Publicidad* publicidad,int cantidad,int id, int* devuelve)
 {
-    int pos;
-    pos=posNombre;
+    int ret=1;
     for (int i=0;i<cantidad;i++)
     {
-        if(publicidad[pos].idPantalla == pantalla[i].idPantalla)
+        if(publicidad[i].idPantalla == id)
         {
-            *posNombre=i;
+            ret=0;
+            *devuelve=i;
             break;
         }
     }
+    return ret;
 }
-*/
 
-/*
-int publicidad_buscarPorId(Publicidad* publicidad, int cantidad,int* devuelve,int id)
+void publicidad_cancelarContratacion(Publicidad* publicidad, int cantPublicidad,Pantalla* pantalla, int cantPantalla)
 {
-    int ret=1;
-
-    for (int i=0;i<cantidad;i++)
+    char cuit [20];
+    int id;
+    int posId;
+    char elecccionBorrar;
+    fflush( stdin ); //LIMPIA BUFFER WINDOWS
+   // __fpurge(stdin); //LIMPIA BUFFER LINUX
+    if(getStringConNum(cuit,"\nIngrese el cuit de la publicidad que desea eliminar: ","error, vuelva a ingresar",2,25,3)==0)
     {
-        if(publicidad[i].isEmpty == 0)
-        {
-            if(publicidad[i].idPublicidad == id)
+       if (publicidad_buscarPorCuit(publicidad, cantPublicidad,cuit,pantalla, cantPantalla)==0 &&
+           pantalla_buscaYdevuelveId(pantalla,cantPantalla,"\n\ningrese el ID de la pantalla que desea eliminar: ", "error, vuelva a ingresar: ",1,50,3,&id)==0 &&
+           publicidad_buscarIdPantalla(publicidad,cantPublicidad,id,&posId)==0)
+         {
+            do
             {
-                ret=0;
-                *devuelve=i;
+                printf("\n\nSeguro que desea eliminar? (s/n): ");
+               // __fpurge(stdin);
+                //fflush( stdin ); //LIMPIA BUFFER WINDOWS
+                scanf("%c",&elecccionBorrar);
+
+                if(elecccionBorrar=='s')
+                {
+                    publicidad[posId].isEmpty=1;
+                    printf("\n\nBORRADO CON EXITO\n\n");
+                }
             }
+            while(elecccionBorrar!='s' && elecccionBorrar!='n');
+         }
+
+        else
+        {
+            printf("\nNO SE ENCONTRO");
         }
     }
 
-    return ret;
 }
-*/
+
+void publicidad_facturacion(Publicidad* publicidad, int cantPublicidad,Pantalla* pantalla, int cantPantalla)
+{
+    char cuit[20];
+    int pos;
+    if(getStringConNum(cuit,"\nIngrese el cuit de la publicidad que desea modificar: ","error, vuelva a ingresar",2,25,3)==0)
+    {
+        printf("\n\n\tIMPORTES");
+        for(int i=0; i<cantPublicidad;i++)
+        {
+            if(publicidad[i].isEmpty==0 &&
+               strncmp(publicidad[i].cuit,cuit,20)==0 &&
+               pantalla_buscarPorId2(pantalla,cantPantalla,publicidad[i].idPantalla,&pos)==0)
+            {
+               printf("\npantalla %s,importe: %0.2f",pantalla[pos].nombre,pantalla[pos].precio);
+            }
+        }
+    }
+}
 
 
 

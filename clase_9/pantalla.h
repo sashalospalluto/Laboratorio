@@ -23,6 +23,6 @@ void pantalla_mostrar (Pantalla* pantalla, int cantidad);
 void pantalla_modificar(Pantalla* pantalla, int posicion);
 void pantalla_baja(Pantalla* pantalla, int posicion);
 int pantalla_buscarPorId2(Pantalla* pantalla, int cantidad,int id, int* devuelve);
-
+int pantalla_buscaYdevuelveId(Pantalla* pantalla, int cantidad,char* mensaje,char*mensajeError,int minimo,int maximo,int reintentos, int* devuelveId);
 
 #endif // PANTALLA_H_INCLUDED
