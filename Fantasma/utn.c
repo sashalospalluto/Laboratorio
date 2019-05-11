@@ -64,8 +64,10 @@ int utn_getName(char* msg, char* msgError, int min, int max, int reintentos, cha
         {
             if(!getString(msg,msgError,min,max,&reintentos,bufferStr)) //==0
             {
+
                 if(isValidName(bufferStr)==1)
                 {
+
                     strncpy(resultado,bufferStr,max);
                     retorno=0;
                     break;
@@ -89,11 +91,15 @@ int isValidName(char* stringRecibido)   //si fuera un numero podrìa necesitar p
     for(i=0;stringRecibido[i]!='\0';i++)
     {
         //printf("%d",i);
-        if(stringRecibido[i]<'A' || (stringRecibido[i]>'Z' && stringRecibido[i]<'a') || stringRecibido[i]>'z')// o ((stringRecibido[i]<'A' || (stringRecibido[i]>'Z') && (stringRecibido[i]<'a' || stringRecibido[i]>'z'))
+        if(stringRecibido[i]<' ')
         {
-            retorno=0;
-            break;
+            if(stringRecibido[i]<'A' || (stringRecibido[i]>'Z' && stringRecibido[i]<'a') || stringRecibido[i]>'z' )// o ((stringRecibido[i]<'A' || (stringRecibido[i]>'Z') && (stringRecibido[i]<'a' || stringRecibido[i]>'z'))
+            {
+                retorno=0;
+                break;
+            }
         }
+
     }
     return retorno;
 }
@@ -103,6 +109,7 @@ int utn_getUnsignedInt(  char* msg,char* msgError,int minSize,int maxSize,int mi
 {
     int retorno=-1;
     char bufferStr[maxSize];
+    int auxInput; //nuevo
 
     if(msg!=NULL && msgError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
     {
@@ -112,14 +119,24 @@ int utn_getUnsignedInt(  char* msg,char* msgError,int minSize,int maxSize,int mi
             {
                 if(isValidNumber(bufferStr)==1)
                 {
-                    *input=atoi(bufferStr);     // unsigned long int strtoul(const char *str, char **end, int base)?
-                    retorno=0;
-                    break;
+                    auxInput=atoi(bufferStr); //nuevo
+
+                    if(auxInput>=min && auxInput<=max)
+                    {
+                        *input=atoi(bufferStr);     // unsigned long int strtoul(const char *str, char **end, int base)?
+                        retorno=0;
+                        break;
+                    }
+                    else
+                    {
+                        printf("%s 2",msgError);
+                        reintentos--;
+                    }
+
                 }
                 else
                 {
-                    printf("%s 2",msgError);
-                    reintentos--;
+
                 }
             }
         }
@@ -549,7 +566,7 @@ int utn_getChar(char* msg, char* msgError, int min, int max, int reintentos, cha
     {
         do
         {
-            if(!getString(msg,msgError,1,3,&reintentos,bufferChar)) //==0
+            if(getString(msg,msgError,1,3,&reintentos,bufferChar)==0) //==0
             {
                 if(isValidChar(bufferChar[0])==1)
                 {
@@ -575,5 +592,99 @@ int isValidChar(char charRecibido)
     int retorno=1;  // para las funciones isValid arranco con verdadero y cambio cuando encuentro un error
     if(charRecibido<'A' || (charRecibido>'Z' && charRecibido<'a') || charRecibido>'z')
         retorno=0;
+    return retorno;
+}
+
+int utn_getFecha(int* dia, int* mes, int* agno)
+{
+    int retorno=-1;
+    int auxDia;
+    int auxMes;
+    int auxAgno;
+
+    if (utn_getUnsignedInt("\nIngrese el agno:","agno invalido",1,2020,1,2020,3,&auxAgno)==0)
+    {
+        if (utn_getUnsignedInt("\nIngrese el mes:","mes invalido",1,12,1,12,3,&auxMes)==0)
+        {
+            if(utn_getUnsignedInt("\nIngrese el dia:","dia invalido",1,31,1,31,3,&auxDia)==0)
+            {
+                switch(auxMes)
+                {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    if(auxDia<=31)
+                    {
+                        *dia=auxDia;
+                        *mes=auxMes;
+                        *agno=auxAgno;
+                        retorno=0;
+                    }
+                    else
+                    {
+                        printf("En el mes %d no existe el dia %d",auxMes,auxDia);
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    if(auxDia<=30)
+                    {
+                        *dia=auxDia;
+                        *mes=auxMes;
+                        *agno=auxAgno;
+                        retorno=0;
+                    }
+                    else
+                    {
+                        printf("En el mes %d no existe el dia %d",auxMes,auxDia);
+                    }
+                    break;
+                case 2:
+
+                    if(auxAgno%4==0 && auxAgno%400==0)
+                    {
+                        if(auxDia<=29)
+                        {
+                            *dia=auxDia;
+                            *mes=auxMes;
+                            *agno=auxAgno;
+                            retorno=0;
+                        }
+                        else
+                        {
+                            printf("En el mes %d no existe el dia %d",auxMes,auxDia);
+                        }
+                    }
+                    else if (auxDia<=28)
+                    {
+                        *dia=auxDia;
+                        *mes=auxMes;
+                        *agno=auxAgno;
+                        retorno=0;
+                    }
+                    else
+                    {
+                        printf("En el mes %d no existe el dia %d",auxMes,auxDia);
+                    }
+                    break;
+                }
+            }
+        }
+        else
+        {
+            printf("\nerror al ingresar el mes\n");
+        }
+    }
+    else
+    {
+        printf("\nError al ingresar el año\n");
+    }
+
     return retorno;
 }

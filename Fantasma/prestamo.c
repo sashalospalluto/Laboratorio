@@ -129,7 +129,7 @@ int prestamo_buscarString(Prestamo array[], int size, char* valorBuscado, int* i
         {
             if(array[i].isEmpty==1)
                 continue;
-/*            else if(strcmp(array[i].varString,valorBuscado)==0)                                        //cambiar campo varString
+/*            else if(strcmpi(array[i].varString,valorBuscado)==0)                                        //cambiar campo varString
             {
                 *indice=i;
                 retorno=0;
@@ -331,7 +331,7 @@ int prestamo_ordenarPorString(Prestamo array[],int size)                        
 
 
             j = i - 1;
-/*            while ((j >= 0) && strcmp(bufferString,array[j].varString)<0)         //cambiar campo varString                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].codigoSocio
+/*            while ((j >= 0) && strcmpi(bufferString,array[j].varString)<0)         //cambiar campo varString                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].codigoSocio
             {                                                                                                               //buffer < campo ascendente   buffer > campo descendente
                 strcpy(array[j + 1].varString,array[j].varString);          //cambiar campo varString
                 array[j + 1].idUnico=array[j].idUnico;                                //cambiar campo id

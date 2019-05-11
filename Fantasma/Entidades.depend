@@ -166,3 +166,75 @@
 	"utn.h"
 	"socio.h"
 
+1557449919 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\autor.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"autor.h"
+
+1557383405 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\utn.h
+
+1557368812 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\autor.h
+
+1557449974 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\fantasma.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"fantasma.h"
+
+1557368812 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\fantasma.h
+
+1557449953 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\informes.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"fantasma.h"
+
+1557450029 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\libros.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"libros.h"
+	"autor.h"
+
+1557374681 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\libros.h
+	"autor.h"
+
+1557450029 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\prestamo.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"prestamo.h"
+
+1557368812 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\prestamo.h
+
+1557455640 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\socio.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"socio.h"
+
+1557383405 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\socio.h
+
+1557437289 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1557455640 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"autor.h"
+	"libros.h"
+	"prestamo.h"
+	"socio.h"
+

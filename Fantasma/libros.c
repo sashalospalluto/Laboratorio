@@ -130,7 +130,7 @@ int libro_buscarString(Libro array[], int size, char* valorBuscado, int* indice)
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(strcmp(array[i].titulo,valorBuscado)==0)                                        //cambiar campo titulo
+            else if(strcmpi(array[i].titulo,valorBuscado)==0)                                        //cambiar campo titulo
             {
                 *indice=i;
                 retorno=0;
@@ -207,11 +207,6 @@ int libro_baja(Libro array[], int sizeArray)                                    
         else
         {
             array[posicion].isEmpty=1;
-            array[posicion].idUnico=0;                                                                   //cambiar campo id
-            array[posicion].codigoAutor=0;                                                               //cambiar campo codigoAutor
-//            array[posicion].varFloat=0;                                                             //cambiar campo varFloat
-            strcpy(array[posicion].titulo,"");                                                   //cambiar campo titulo
-//            strcpy(array[posicion].varLongString,"");                                               //cambiar campo varLongString
             retorno=0;
         }
     }
@@ -259,12 +254,14 @@ int libro_bajaValorRepetidoInt(Libro array[], int sizeArray, int valorBuscado) /
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no encuentra elementos con el valor buscado] - (0) si se modifica el elemento exitosamente
 *
 */
-int libro_modificar(Libro array[], int sizeArray, Autor arrayAutor)                                //cambiar libro
+int libro_modificar(Libro array[], int sizeArray, Autor arrayAutor[])                                //cambiar libro
 {
     int retorno=-1;
     int posicion;
+    int pos;
     int id;                                                                                         //cambiar si no se busca por ID
-    char opcion;
+    int opcion;
+    int auxCodigoAutor;
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
@@ -276,28 +273,32 @@ int libro_modificar(Libro array[], int sizeArray, Autor arrayAutor)             
         {
             do
             {       //copiar printf de alta
-                printf("\n Posicion: %d\n CodigoAutor: %d\n titulo: %s\n",
-                posicion,array[posicion].codigoAutor,array[posicion].titulo);
-                utn_getChar("\nModificar: A B S(salir)","\nError",'A','Z',1,&opcion);
+                printf("\n 1-CodigoAutor: %d\n 2-titulo: %s\n 3-salir\n",
+                       array[posicion].codigoAutor,array[posicion].titulo);
+                utn_getUnsignedInt("\nModificar: ","\nError",1,3,1,3,10,&opcion);
+                //utn_getChar("\nModificar: A B S(salir)","\nError",'A','Z',1,&opcion);
                 switch(opcion)
                 {
-                    case 'A':
-  //ME QUEDE ACA           if(utn_getUnsignedInt("\nIngrese codigo de autor: ","\nError",1,sizeof(int),1,10,3,&array[posicion].codigoAutor)==-1 ||
-                           autor_buscarID(arrayAutor,size,array[posicion].codigoAutor,&pos)==-1)                                   //cambiar si no se busca por ID
+                    case 1:
+                        if(utn_getUnsignedInt("\nIngrese codigo de autor: ","\nError",1,sizeof(int),1,10,3,&auxCodigoAutor)==-1 ||
+                           autor_buscarID(arrayAutor,sizeArray,auxCodigoAutor,&pos)==-1)                                   //cambiar si no se busca por ID
                         {
                             printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
                         }
                         else
+                        {
+                            array[posicion].codigoAutor=auxCodigoAutor;
+                        }
                         break;
-                    case 'B':
-                        utn_getName("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].titulo);            //mensaje + cambiar campo varFloat
+                    case 2:
+                        utn_getName("\nIngrese el titulo: ","\nError",1,TEXT_SIZE,1,array[posicion].titulo);            //mensaje + cambiar campo varFloat
                         break;
-                    case 'S':
+                    case 3:
                         break;
                     default:
                         printf("\nOpcion no valida");
                 }
-            }while(opcion!='S');
+            }while(opcion!=3);
             retorno=0;
         }
     }
@@ -333,12 +334,10 @@ int libro_ordenarPorString(Libro array[],int size)                              
             bufferIsEmpty=array[i].isEmpty;
 
             bufferInt=array[i].codigoAutor;                                //cambiar campo codigoAutor
-//            bufferFloat=array[i].varFloat;                            //cambiar campo varFloat
-//            strcpy(bufferLongString,array[i].varLongString);          //cambiar campo varLongString
 
 
             j = i - 1;
-            while ((j >= 0) && strcmp(bufferString,array[j].titulo)<0)         //cambiar campo titulo                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].codigoAutor
+            while ((j >= 0) && strcmpi(bufferString,array[j].titulo)<0)         //cambiar campo titulo                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].codigoAutor
             {                                                                                                               //buffer < campo ascendente   buffer > campo descendente
                 strcpy(array[j + 1].titulo,array[j].titulo);          //cambiar campo titulo
                 array[j + 1].idUnico=array[j].idUnico;                                //cambiar campo id

@@ -129,7 +129,7 @@ int autor_buscarString(Autor array[], int size, char* valorBuscado, int* indice)
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(strcmp(array[i].nombre,valorBuscado)==0)                                        //cambiar campo nombre
+            else if(strcmpi(array[i].nombre,valorBuscado)==0)                                        //cambiar campo nombre
             {
                 *indice=i;
                 retorno=0;
@@ -332,7 +332,7 @@ int autor_ordenarPorString(Autor array[],int size)                              
 
 
             j = i - 1;
-            while ((j >= 0) && strcmp(bufferLongString,array[i].apellido)<0)         //cambiar campo nombre                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].varInt
+            while ((j >= 0) && strcmpi(bufferLongString,array[i].apellido)<0)         //cambiar campo nombre                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].varInt
             {                                                                                                               //buffer < campo ascendente   buffer > campo descendente
                 strcpy(array[j + 1].nombre,array[j].nombre);          //cambiar campo nombre
                 array[j + 1].idUnico=array[j].idUnico;                                //cambiar campo id
