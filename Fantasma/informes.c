@@ -22,8 +22,10 @@ int Informes_listarPorCriterio(Fantasma arrayA[], Fantasma arrayB[], int sizeI, 
     {
         for(i=0;i<sizeI;i++)                                                                            //Obtengo la posicion de la primer entidad
         {
-            if(arrayA[i].isEmpty==1 && strcmpi(arrayA[i].varString,criterio)!=0)                 //cambiar campo donde busco el criterio
-                continue;                                                                       //si esta vacio o no tiene el criterio > continue
+            if(arrayA[i].isEmpty==1 && strcmpi(arrayA[i].varString,criterio)!=0)
+            {
+                continue;
+            }
             else
             {
                 fantasma_buscarID(arrayB,sizeJ,arrayA[i].idUnico,&j);                            //Obtengo la posicion de la 2da entidad buscando por el campo en comun

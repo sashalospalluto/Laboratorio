@@ -16,6 +16,8 @@ typedef struct
 
 #endif // AUTOR_H_INCLUDED
 
+int autor_todoVacio(Autor array[], int size);
+void autor_hardcodeo(Autor arrayAutor[]);
 int autor_Inicializar(Autor array[], int size);                                    //cambiar autor
 int autor_buscarEmpty(Autor array[], int size, int* posicion);                    //cambiar autor
 int autor_buscarID(Autor array[], int size, int valorBuscado, int* posicion);                    //cambiar autor
@@ -25,6 +27,6 @@ int autor_alta(Autor array[], int size, int* contadorID);                       
 int autor_baja(Autor array[], int sizeArray);                                      //cambiar autor
 int autor_bajaValorRepetidoInt(Autor array[], int sizeArray, int valorBuscado);
 int autor_modificar(Autor array[], int sizeArray);                                //cambiar autor
-int autor_ordenarPorString(Autor array[],int size);                              //cambiar autor
+void autor_ordenarPorString(Autor array[],int size);                              //cambiar autor
 int autor_listar(Autor array[], int size);                      //cambiar autor
 

@@ -4,6 +4,52 @@
 #include "utn.h"
 #include "socio.h" //cambiar por nombre entidad
 
+void socio_hardcodeo(Socio arraySocio[])
+{
+    strcpy(arraySocio[0].nombre,"Sasha");
+    strcpy(arraySocio[0].apellido,"Lospalluto");
+    arraySocio[0].sexo='f';
+    arraySocio[0].telefono=1166262107;
+    strcpy(arraySocio[0].email,"sasha@hotmail.com");
+    arraySocio[0].dia=21;
+    arraySocio[0].mes=07;
+    arraySocio[0].agno=1997;
+    arraySocio[0].isEmpty=0;
+    arraySocio[0].idUnico=1;
+
+    strcpy(arraySocio[1].nombre,"Sasha");//Juan Manuel
+    strcpy(arraySocio[1].apellido,"Chico");
+    arraySocio[1].sexo='m';
+    arraySocio[1].telefono=1168940444;
+    strcpy(arraySocio[1].email,"juan@hotmail.com");
+    arraySocio[1].dia=25;
+    arraySocio[1].mes=8;
+    arraySocio[1].agno=1997;
+    arraySocio[1].isEmpty=0;
+    arraySocio[1].idUnico=2;
+
+    strcpy(arraySocio[2].nombre,"Sandra Angelica");//Sandra Angelica
+    strcpy(arraySocio[2].apellido,"Alvez");
+    arraySocio[2].sexo='f';
+    arraySocio[2].telefono=1165808344;
+    strcpy(arraySocio[2].email,"sandra@hotmail.com");
+    arraySocio[2].dia=26;
+    arraySocio[2].mes=01;
+    arraySocio[2].agno=1972;
+    arraySocio[2].isEmpty=0;
+    arraySocio[2].idUnico=3;
+
+    strcpy(arraySocio[3].nombre,"Sasha");//Sandra Angelica
+    strcpy(arraySocio[3].apellido,"Alvez");
+    arraySocio[3].sexo='f';
+    arraySocio[3].telefono=1165808344;
+    strcpy(arraySocio[3].email,"sandra@hotmail.com");
+    arraySocio[3].dia=26;
+    arraySocio[3].mes=01;
+    arraySocio[3].agno=1972;
+    arraySocio[3].isEmpty=0;
+    arraySocio[3].idUnico=4;
+}
 
 /** \brief  To indicate that all position in the array are empty,
 *          this function put the flag (isEmpty) in TRUE in all
@@ -154,39 +200,44 @@ int socio_alta(Socio array[], int size, int* contadorID)                        
 {
     int retorno=-1;
     int posicion;
-    if(array!=NULL && size>0 && contadorID!=NULL)
+    if (socio_todoVacio(array,size)==0)
     {
-        if(socio_buscarEmpty(array,size,&posicion)==-1)                          //cambiar socio
+        printf("\nNo ingreso ningun socio\n");
+    }
+    else
+    {
+        if(array!=NULL && size>0 && contadorID!=NULL)
         {
-            printf("\nNo hay lugares vacios");
-        }
-        else
-        {
-            if(utn_getFloat("\nTelefono: ","\nError",1,13,0,sizeof(float),1,&array[posicion].telefono)==0 &&            //mensaje + cambiar campo telefono
-               utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre)==0 &&                      //mensaje + cambiar campo nombre
-               utn_getTexto("\nApellido: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido)==0)
-               {
-                   utn_getChar("\nIngrese sexo (F o M): ","\nError",1,sizeof(char),3,&array[posicion].sexo);
-                   if (array[posicion].sexo=='f' || array[posicion].sexo=='F' || array[posicion].sexo=='m' || array[posicion].sexo=='M')
+            if(socio_buscarEmpty(array,size,&posicion)==-1)                          //cambiar socio
+            {
+                printf("\nNo hay lugares vacios");
+            }
+            else
+            {
+                if(utn_getFloat("\nTelefono: ","\nError",1,13,0,sizeof(float),1,&array[posicion].telefono)==0 &&            //mensaje + cambiar campo telefono
+                   utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre)==0 &&                      //mensaje + cambiar campo nombre
+                   utn_getName("\nApellido: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido)==0)
                    {
-                       if (utn_getEmail("\ningrese email: ", "\nerror\n",1,TEXT_SIZE,3,array[posicion].email)==0 &&
-                            utn_getFecha(&array[posicion].dia,&array[posicion].mes,&array[posicion].agno)==0)
-                            {
-                                (*contadorID)++;
-                                array[posicion].idUnico=*contadorID;                                                       //campo ID
-                                array[posicion].isEmpty=0;
-                            }
+                       utn_getChar("\nIngrese sexo (F o M): ","\nError",1,sizeof(char),3,&array[posicion].sexo);
+                       if (array[posicion].sexo=='f' || array[posicion].sexo=='F' || array[posicion].sexo=='m' || array[posicion].sexo=='M')
+                       {
+                           if (utn_getEmail("\ningrese email: ", "\nerror\n",1,TEXT_SIZE,3,array[posicion].email)==0 &&
+                                utn_getFecha(&array[posicion].dia,&array[posicion].mes,&array[posicion].agno)==0)
+                                {
+                                    (*contadorID)++;
+                                    array[posicion].idUnico=*contadorID;                                                       //campo ID
+                                    array[posicion].isEmpty=0;
+                                    printf("\n Posicion: %d\n ID: %d\n telefono: %f\n nombre: %s\n apellido: %s \n Sexo: %c\n Email: %s\n Fecha: %d/%d/%d\n",
+                                    posicion, array[posicion].idUnico,array[posicion].telefono,array[posicion].nombre,array[posicion].apellido,array[posicion].sexo, array[posicion].email,array[posicion].dia,array[posicion].mes, array[posicion].agno);
+                                }
+                       }
+                       else
+                       {
+                           printf("\nError al poner el sexo\n");
+                       }
                    }
-                   else
-                   {
-                       printf("\nError al poner el sexo\n");
-                   }
-               }
-
-
-            printf("\n Posicion: %d\n ID: %d\n telefono: %f\n nombre: %s\n apellido: %s \n Sexo: %c\n Email: %s\n Fecha: %d/%d/%d\n",
-                   posicion, array[posicion].idUnico,array[posicion].telefono,array[posicion].nombre,array[posicion].apellido,array[posicion].sexo, array[posicion].email,array[posicion].dia,array[posicion].mes, array[posicion].agno);
-            retorno=0;
+                retorno=0;
+            }
         }
     }
     return retorno;
@@ -205,18 +256,25 @@ int socio_baja(Socio array[], int sizeArray)                                    
     int retorno=-1;
     int posicion;
     int id;
-    if(array!=NULL && sizeArray>0)
+    if (socio_todoVacio(array,sizeArray)==0)
     {
-        utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
-        if(socio_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        printf("\nNo ingreso ningun socio\n");
+    }
+    else
+    {
+        if(array!=NULL && sizeArray>0)
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            printf("\nBORRADO CON EXITO\n");
-            array[posicion].isEmpty=1;
-            retorno=0;
+            utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
+            if(socio_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                printf("\nBORRADO CON EXITO\n");
+                array[posicion].isEmpty=1;
+                retorno=0;
+            }
         }
     }
     return retorno;
@@ -272,80 +330,87 @@ int socio_modificar(Socio array[], int sizeArray)                               
 
     //auxiliares
     Socio auxArray;
-    if(array!=NULL && sizeArray>0)
+    if (socio_todoVacio(array,sizeArray)==0)
     {
-        utn_getUnsignedInt("\nIngrese el codigo del socio: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
-        if(socio_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        printf("\nNo ingreso ningun socio\n");
+    }
+    else
+    {
+        if(array!=NULL && sizeArray>0)
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            do
-            {       //copiar printf de alta
-                printf("\n 1-nombre: %s\n 2-apellido: %s \n3-sexo: %c \n4-Telefono: %2.f \n5-email: %s\n6-SALIR\n",
-                       array[posicion].nombre,array[posicion].apellido, array[posicion].sexo,array[posicion].telefono,array[posicion].email);
-                utn_getUnsignedInt("\nIngrese opcion: ","error",1,7,1,6,3,&opcion);
-                switch(opcion)
-                {
-                    case 1:
-                        if (utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,auxArray.nombre)==0)
-                        {
-                            strcpy(array[posicion].nombre,auxArray.nombre);
-                        }
-                        else
-                        {
-                            printf("\nError al cargar el dato");
-                        }
-                        break;
-                    case 2:
-                        if(utn_getTexto("\nApellido: ","\nError",1,TEXT_SIZE,1,auxArray.apellido)==0)
-                        {
-                            strcpy(array[posicion].apellido,auxArray.apellido);
-                        }
-                        else
-                        {
-                            printf("\nError al cargar el dato");
-                        }
-                        break;
-                    case 3:
-                        utn_getChar("\nIngrese sexo (F o M): ","\nError",1,sizeof(char),3,&auxArray.sexo);
-                        if (auxArray.sexo=='f' || auxArray.sexo=='F' || auxArray.sexo=='m' || auxArray.sexo=='M')
-                        {
-                            array[posicion].sexo=auxArray.sexo;
-                        }
-                        else
-                        {
-                            printf("\nError al cargar el dato");
-                        }
-                        break;
-                    case 4:
-                        if(utn_getFloat("\nTelefono: ","\nError",1,13,0,sizeof(float),1,&auxArray.telefono)==0)
-                        {
-                            array[posicion].telefono=auxArray.telefono;
-                        }
-                        else
-                        {
-                            printf("\nError al cargar el dato");
-                        }
-                        break;
-                    case 5:
-                        if(utn_getEmail("\ningrese email: ", "\nerror\n",1,TEXT_SIZE,3,auxArray.email)==0)
-                        {
-                            strcpy(array[posicion].email,auxArray.email);
-                        }
-                        else
-                        {
-                            printf("\nError al cargar el dato");
-                        }
-                        break;
-                    case 6:
-                        break;
-                    default:
-                        printf("\nOpcion no valida");
-                }
-            }while(opcion!=6);
-            retorno=0;
+            utn_getUnsignedInt("\nIngrese el codigo del socio: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
+            if(socio_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                do
+                {       //copiar printf de alta
+                    printf("\n 1-nombre: %s\n 2-apellido: %s \n3-sexo: %c \n4-Telefono: %2.f \n5-email: %s\n6-SALIR\n",
+                           array[posicion].nombre,array[posicion].apellido, array[posicion].sexo,array[posicion].telefono,array[posicion].email);
+                    utn_getUnsignedInt("\nIngrese opcion: ","error",1,7,1,6,3,&opcion);
+                    switch(opcion)
+                    {
+                        case 1:
+                            if (utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,auxArray.nombre)==0)
+                            {
+                                strcpy(array[posicion].nombre,auxArray.nombre);
+                            }
+                            else
+                            {
+                                printf("\nError al cargar el dato");
+                            }
+                            break;
+                        case 2:
+                            if(utn_getTexto("\nApellido: ","\nError",1,TEXT_SIZE,1,auxArray.apellido)==0)
+                            {
+                                strcpy(array[posicion].apellido,auxArray.apellido);
+                            }
+                            else
+                            {
+                                printf("\nError al cargar el dato");
+                            }
+                            break;
+                        case 3:
+                            utn_getChar("\nIngrese sexo (F o M): ","\nError",1,sizeof(char),3,&auxArray.sexo);
+                            if (auxArray.sexo=='f' || auxArray.sexo=='F' || auxArray.sexo=='m' || auxArray.sexo=='M')
+                            {
+                                array[posicion].sexo=auxArray.sexo;
+                            }
+                            else
+                            {
+                                printf("\nError al cargar el dato");
+                            }
+                            break;
+                        case 4:
+                            if(utn_getFloat("\nTelefono: ","\nError",1,13,0,sizeof(float),1,&auxArray.telefono)==0)
+                            {
+                                array[posicion].telefono=auxArray.telefono;
+                            }
+                            else
+                            {
+                                printf("\nError al cargar el dato");
+                            }
+                            break;
+                        case 5:
+                            if(utn_getEmail("\ningrese email: ", "\nerror\n",1,TEXT_SIZE,3,auxArray.email)==0)
+                            {
+                                strcpy(array[posicion].email,auxArray.email);
+                            }
+                            else
+                            {
+                                printf("\nError al cargar el dato");
+                            }
+                            break;
+                        case 6:
+                            break;
+                        default:
+                            printf("\nOpcion no valida");
+                    }
+                }while(opcion!=6);
+                retorno=0;
+            }
         }
     }
     return retorno;
@@ -359,72 +424,36 @@ int socio_modificar(Socio array[], int sizeArray)                               
 * \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se ordena exitosamente
 *
 */
-int socio_ordenarPorString(Socio array[],int size)                              //cambiar socio
+
+void socio_ordenarPorString(Socio array[],int size)                              //cambiar autor
 {
-    int retorno=-1;
-    int i, j;
-    char bufferString[TEXT_SIZE];                               //cambiar campo nombre
-    int bufferId;
-    int bufferIsEmpty;
-    char bufferSexo;
-    char bufferEmail[TEXT_SIZE];
-    int dia;
-    int mes;
-    int agno;
+    printf("\nORDENADO POR APELLIDO Y NOMBRE\n");
+    int i;
+    Socio auxiliar;
+    int j;
 
-
-//    int bufferInt;                                              //cambiar buffer int
-    float bufferFloat;                                          //cambiar buffer telefono
-    char bufferLongString[TEXT_SIZE];                           //cambiar campo apellido
-
-    if(array!=NULL && size>=0)
-    {
-        for (i = 1; i < size; i++)
+      for(i=0 ; i<size-1 ; i++)
         {
-
-            strcpy(bufferString,array[i].nombre);                      //cambiar campo nombre
-            bufferId=array[i].idUnico;                                   //cambiar campo id
-            bufferIsEmpty=array[i].isEmpty;
-            bufferFloat=array[i].telefono;                            //cambiar campo telefono
-            strcpy(bufferLongString,array[i].apellido);
-            strcpy(bufferEmail,array[i].email);          //cambiar campo apellido
-            bufferSexo=array[i].sexo;
-            dia=array[i].dia;
-            mes=array[i].mes;
-            agno=array[i].agno;
-
-            j = i - 1;
-            while ((j >= 0) && strcmpi(bufferString,array[j].nombre)<0)         //cambiar campo nombre                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].varInt
+            for(j=i+1; j<size ; j++)
             {
-                                                                                                                      //buffer < campo ascendente   buffer > campo descendente
-                strcpy(array[j + 1].nombre,array[j].nombre);          //cambiar campo nombre
-                array[j+1].idUnico=array[j].idUnico;                                //cambiar campo id
-                array[j+1].isEmpty=array[j].isEmpty;
-                array[j+1].telefono=array[j].telefono;                    //cambiar campo telefono
-                strcpy(array[j + 1].apellido,array[j].apellido);  //cambiar campo apellido
-                strcpy(array[j + 1].email,array[j].email);
-                array[j+1].sexo=array[j].sexo;
-                array[j+1].dia=array[j].dia;
-                array[j+1].mes=array[j].mes;
-                array[j+1].agno=array[j].agno;
-                j--;
+                if((array[i].isEmpty==0) && (array[j].isEmpty==0))
+                {
+                    if ((strcmpi(array[j].apellido,array[i].apellido)<0))
+                    {
+                        auxiliar=array[i];
+                        array[i]=array[j];
+                        array[j]=auxiliar;
+                    }else if((strcmpi(array[j].apellido,array[i].apellido)==0) && (strcmpi(array[j].nombre,array[i].nombre)<0))
+                        {
+                            auxiliar=array[i];
+                            array[i]=array[j];
+                            array[j]=auxiliar;
+                        }
+                }
             }
-
-            strcpy(array[j + 1].nombre,bufferString);                     //cambiar campo nombre
-            array[j + 1].idUnico=bufferId;                                        //cambiar campo id
-            array[j + 1].isEmpty=bufferIsEmpty;
-            array[j + 1].telefono=bufferFloat;                                                    //cambiar campo telefono
-            strcpy(array[j + 1].apellido,bufferLongString);                                  //cambiar campo apellido
-            strcpy(array[j + 1].email,bufferEmail);
-            array[j+1].sexo=bufferSexo;
-            array[j+1].dia=dia;
-            array[j+1].mes=mes;
-            array[j+1].agno=agno;
         }
-        retorno=0;
-    }
-    return retorno;
 }
+
 
 //*****************************************
 //Listar
@@ -438,17 +467,44 @@ int socio_listar(Socio array[], int size)                      //cambiar socio
 {
     int retorno=-1;
     int i;
-    if(array!=NULL && size>=0)
+    if (socio_todoVacio(array,size)==0)
     {
-        for(i=0;i<size;i++)
+        printf("\nNo ingreso ningun socio\n");
+    }
+    else
+    {
+        if(array!=NULL && size>=0)
         {
-            if(array[i].isEmpty==1)
-                continue;
-            else
-                printf("\n ID: %d\n telefono: %2.f\n nombre: %s\n apellido: %s \n Sexo: %c \n email: %s, \n fecha: %d/%d/%d\n",
-                       array[i].idUnico,array[i].telefono,array[i].nombre,array[i].apellido, array[i].sexo, array[i].email,array[i].dia,array[i].mes,array[i].agno);      //cambiar todos
+            socio_ordenarPorString(array,size);
+            for(i=0;i<size;i++)
+            {
+                if(array[i].isEmpty==1)
+                    continue;
+                else
+                    printf("\n ID: %d\n telefono: %2.f\n nombre: %s\n apellido: %s \n Sexo: %c \n email: %s, \n fecha: %d/%d/%d\n",
+                           array[i].idUnico,array[i].telefono,array[i].nombre,array[i].apellido, array[i].sexo, array[i].email,array[i].dia,array[i].mes,array[i].agno);      //cambiar todos
+            }
+            retorno=0;
         }
-        retorno=0;
     }
     return retorno;
+}
+
+int socio_todoVacio(Socio array[], int size)
+{
+    int ret=-1;
+    int contador=0;
+    int i;
+    for(i=0;i<size;i++)
+    {
+        if(array[i].isEmpty==1)
+        {
+            contador++;
+            if(contador==size)
+            {
+               ret=0;
+            }
+        }
+    }
+    return ret;
 }

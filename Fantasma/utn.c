@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "utn.h"
 
 /*
@@ -21,7 +22,7 @@ utn_getFecha
 /*************************
 *
 *
-*param max TamaÃ±o= elementos+1(\0)
+*param max Tamaño= elementos+1(\0)
 *
 ***************************/
 
@@ -39,7 +40,7 @@ int getString(char* msg, char* msgError, int min, int max, int* reintentos, char
             fgets(bufferStr,sizeof(bufferStr),stdin);
             bufferStr[strlen(bufferStr)-1]='\0';
 
-            if(strlen(bufferStr)>=min && strlen(bufferStr)<max)    // tamaÃ±o (max) =cantidad de elementos (strlen) + 1(\0)
+            if(strlen(bufferStr)>=min && strlen(bufferStr)<max)    // tamaño (max) =cantidad de elementos (strlen) + 1(\0)
             {
                 strncpy(resultado,bufferStr,max);
                 retorno=0;
@@ -65,7 +66,7 @@ int utn_getName(char* msg, char* msgError, int min, int max, int reintentos, cha
             if(!getString(msg,msgError,min,max,&reintentos,bufferStr)) //==0
             {
 
-                if(isValidName(bufferStr)==1)
+                if(isValidName(bufferStr)==0)
                 {
 
                     strncpy(resultado,bufferStr,max);
@@ -84,20 +85,21 @@ int utn_getName(char* msg, char* msgError, int min, int max, int reintentos, cha
     return retorno;
 }
 
-int isValidName(char* stringRecibido)   //si fuera un numero podrÃ¬a necesitar parametros para validar max y min
+int isValidName(char* stringRecibido)   //si fuera un numero podrìa necesitar parametros para validar max y min
 {
     int retorno=1;  // para las funciones isValid arranco con verdadero y cambio cuando encuentro un error
     int i;
     for(i=0;stringRecibido[i]!='\0';i++)
     {
         //printf("%d",i);
-        if(stringRecibido[i]<' ')
+        if (isalpha(stringRecibido[i])!=0 || stringRecibido[i]==' ')
         {
-            if(stringRecibido[i]<'A' || (stringRecibido[i]>'Z' && stringRecibido[i]<'a') || stringRecibido[i]>'z' )// o ((stringRecibido[i]<'A' || (stringRecibido[i]>'Z') && (stringRecibido[i]<'a' || stringRecibido[i]>'z'))
-            {
-                retorno=0;
-                break;
-            }
+            retorno=0;
+        }
+        else
+        {
+            retorno=1;
+            break;
         }
 
     }
@@ -683,7 +685,7 @@ int utn_getFecha(int* dia, int* mes, int* agno)
     }
     else
     {
-        printf("\nError al ingresar el aÃ±o\n");
+        printf("\nError al ingresar el año\n");
     }
 
     return retorno;

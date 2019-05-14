@@ -166,7 +166,7 @@
 	"utn.h"
 	"socio.h"
 
-1557449919 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\autor.c
+1557801446 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\autor.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
@@ -175,7 +175,7 @@
 
 1557383405 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\utn.h
 
-1557368812 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\autor.h
+1557800600 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\autor.h
 
 1557449974 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\fantasma.c
 	<string.h>
@@ -193,7 +193,7 @@
 	"utn.h"
 	"fantasma.h"
 
-1557450029 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\libros.c
+1557804527 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\libros.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
@@ -201,34 +201,37 @@
 	"libros.h"
 	"autor.h"
 
-1557374681 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\libros.h
+1557801363 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\libros.h
 	"autor.h"
 
-1557450029 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\prestamo.c
+1557803865 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\prestamo.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	"utn.h"
 	"prestamo.h"
 
-1557368812 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\prestamo.h
+1557803865 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\prestamo.h
+	"socio.h"
+	"libros.h"
 
-1557455640 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\socio.c
+1557804447 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\socio.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	"utn.h"
 	"socio.h"
 
-1557383405 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\socio.h
+1557804493 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\socio.h
 
-1557437289 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\utn.c
+1557865853 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<ctype.h>
 	"utn.h"
 
-1557455640 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\main.c
+1557803949 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\fantasma\main.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>

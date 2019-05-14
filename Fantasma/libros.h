@@ -16,6 +16,8 @@ typedef struct
 
 #endif // LIBROS_H_INCLUDED
 
+int libro_todoVacio(Libro array[], int size);
+void libro_hardcodeo(Libro arrayLibro[]);
 int libro_Inicializar(Libro array[], int size);                                    //cambiar libro
 int libro_buscarEmpty(Libro array[], int size, int* posicion);                    //cambiar libro
 int libro_buscarID(Libro array[], int size, int valorBuscado, int* posicion);                    //cambiar libro

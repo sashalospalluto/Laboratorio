@@ -149,28 +149,66 @@ int prestamo_buscarString(Prestamo array[], int size, char* valorBuscado, int* i
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no hay posiciones vacias] - (0) si se agrega un nuevo elemento exitosamente
 *
 */
-int prestamo_alta(Prestamo array[], int size, int* contadorID)                          //cambiar prestamo
+int prestamo_alta(Prestamo array[], int size, int* contadorID,Socio arraySocio[], Libro arrayLibro[])                          //cambiar prestamo
 {
     int retorno=-1;
     int posicion;
-    if(array!=NULL && size>0 && contadorID!=NULL)
+    int devuelve;
+    if (socio_todoVacio(arraySocio,size)==0 && libro_todoVacio(arrayLibro,size)==0)
     {
-        if(prestamo_buscarEmpty(array,size,&posicion)==-1)                          //cambiar prestamo
+        printf("\nDebe ingresar al menos un socio y un libro\n");
+    }
+    else
+    {
+        if(array!=NULL && size>0 && contadorID!=NULL)
         {
-            printf("\nNo hay lugares vacios");
-        }
-        else
-        {
-            (*contadorID)++;
-            array[posicion].idUnico=*contadorID;                                                       //campo ID
-            array[posicion].isEmpty=0;
-            utn_getUnsignedInt("\ngetUnsignedInt: ","\nError",1,sizeof(int),1,1,1,&array[posicion].codigoSocio);           //mensaje + cambiar campo codigoSocio
-//            utn_getFloat("\ngetFloat: ","\nError",1,sizeof(float),0,1,1,&array[posicion].varFloat);             //mensaje + cambiar campo varFloat
-//            utn_getName("getName\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varString);                      //mensaje + cambiar campo varString
-//            utn_getTexto("getTexto\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varLongString);                 //mensaje + cambiar campo varLongString
-            printf("\n Posicion: %d\n ID: %d\n codigoSocio: %d\n",
-                   posicion, array[posicion].idUnico,array[posicion].codigoSocio);
-            retorno=0;
+            if(prestamo_buscarEmpty(array,size,&posicion)==-1)
+            {
+                printf("\nNo hay lugares vacios");
+            }
+            else
+            {
+                //fflush( stdin);
+                if (utn_getUnsignedInt("\nIngrese el codigo del socio: ","\nError",1,sizeof(int),1,3,1,&array[posicion].codigoSocio)==0)
+                {
+                    if(socio_buscarID(arraySocio,size,array[posicion].codigoSocio,&devuelve)!=0)
+                    {
+                        printf("\nEl codigo de socio no existe\n");
+                    }
+                    else if (utn_getUnsignedInt("\nIngrese el codigo de Libro: ","\nError",1,sizeof(int),1,3,1,&array[posicion].codigoLibro)==0)
+                        {
+                            if(libro_buscarID(arrayLibro,size,array[posicion].codigoLibro,&devuelve)!=0)
+                            {
+                                printf("\nEl codigo de libro no existe\n");
+                            }
+                            else
+                            {
+                            if(utn_getFecha(&array[posicion].dia,&array[posicion].mes,&array[posicion].agno)==0)
+                            {
+                                (*contadorID)++;
+                                array[posicion].idUnico=*contadorID;                                                       //campo ID
+                                array[posicion].isEmpty=0;
+                                printf("\n Posicion: %d\n ID: %d\n codigoSocio: %d\n codigo libro: %d\n fecha:%d/%d/%d\n",
+                                       posicion, array[posicion].idUnico,array[posicion].codigoSocio,
+                                       array[posicion].codigoLibro,array[posicion].dia,array[posicion].mes,array[posicion].agno);
+                                retorno=0;
+                            }
+                                else
+                                {
+                                    printf("\n\Error al cargar la fechan");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            printf("\nError al cargar los datos\n");
+                        }
+                }
+                else
+                {
+                    printf("\nError al cargar los datos\n");
+                }
+            }
         }
     }
     return retorno;
@@ -382,5 +420,4 @@ int prestamo_listar(Prestamo array[], int size)                      //cambiar p
     }
     return retorno;
 }
-
 

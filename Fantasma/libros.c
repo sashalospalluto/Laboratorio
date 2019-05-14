@@ -5,6 +5,23 @@
 #include "libros.h" //cambiar por nombre entidad
 #include "autor.h"
 
+void libro_hardcodeo(Libro arrayLibro[])
+{
+    strcpy(arrayLibro[0].titulo,"Inquisiciones");
+    arrayLibro[0].codigoAutor=1;
+    arrayLibro[0].isEmpty=0;
+    arrayLibro[0].idUnico=1;
+
+    strcpy(arrayLibro[1].titulo,"Rayuela");
+    arrayLibro[1].codigoAutor=2;
+    arrayLibro[1].isEmpty=0;
+    arrayLibro[1].idUnico=2;
+
+    strcpy(arrayLibro[2].titulo,"Tunel");
+    arrayLibro[2].codigoAutor=1;
+    arrayLibro[2].isEmpty=0;
+    arrayLibro[2].idUnico=3;
+}
 
 /** \brief  To indicate that all position in the array are empty,
 *          this function put the flag (isEmpty) in TRUE in all
@@ -163,21 +180,25 @@ int libro_alta(Libro array[], int size, int* contadorID, Autor arrayAutor[])    
         }
         else
         {
-            (*contadorID)++;
-            array[posicion].idUnico=*contadorID;                                                       //campo ID
-            array[posicion].isEmpty=0;
             if(utn_getUnsignedInt("\nIngrese codigo de autor: ","\nError",1,sizeof(int),1,10,3,&array[posicion].codigoAutor)==-1 ||
-               autor_buscarID(arrayAutor,size,array[posicion].codigoAutor,&pos)==-1 ||
-               utn_getName("Ingrese el titulo del libro: ","\nError",1,TEXT_SIZE,3,array[posicion].titulo)==-1)                                   //cambiar si no se busca por ID
+               autor_buscarID(arrayAutor,size,array[posicion].codigoAutor,&pos)==-1)                                   //cambiar si no se busca por ID
             {
-                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+                printf("\nNo existe este ID\n");                                                          //cambiar si no se busca por ID
             }
-            else
-            {   //mensaje + cambiar campo titulo
+            else if (utn_getTexto("Ingrese el titulo del libro: ","\nError",1,TEXT_SIZE,3,array[posicion].titulo)==0)
+            {
+                (*contadorID)++;
+                array[posicion].idUnico=*contadorID;                                                       //campo ID
+                array[posicion].isEmpty=0;
                 printf("\n Posicion: %d\n ID: %d\n codigoAutor: %d\n titulo: %s\n",
                 posicion, array[posicion].idUnico,array[posicion].codigoAutor,array[posicion].titulo);
                 retorno=0;
             }
+            else
+            {
+                printf("\nError al cargar el titulo del libro\n");
+            }
+
 
         }
     }
@@ -197,17 +218,24 @@ int libro_baja(Libro array[], int sizeArray)                                    
     int retorno=-1;
     int posicion;
     int id;
-    if(array!=NULL && sizeArray>0)
+    if (libro_todoVacio(array,sizeArray)==0)
     {
-        utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
-        if(libro_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        printf("\nNo ingreso ningun libro\n");
+    }
+    else
+    {
+        if(array!=NULL && sizeArray>0)
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            array[posicion].isEmpty=1;
-            retorno=0;
+            utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
+            if(libro_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                array[posicion].isEmpty=1;
+                retorno=0;
+            }
         }
     }
     return retorno;
@@ -262,44 +290,51 @@ int libro_modificar(Libro array[], int sizeArray, Autor arrayAutor[])           
     int id;                                                                                         //cambiar si no se busca por ID
     int opcion;
     int auxCodigoAutor;
-    if(array!=NULL && sizeArray>0)
+    if (libro_todoVacio(array,sizeArray)==0)
     {
-        utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
-        if(libro_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        printf("\nNo ingreso ningun libro\n");
+    }
+    else
+    {
+        if(array!=NULL && sizeArray>0)
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            do
-            {       //copiar printf de alta
-                printf("\n 1-CodigoAutor: %d\n 2-titulo: %s\n 3-salir\n",
-                       array[posicion].codigoAutor,array[posicion].titulo);
-                utn_getUnsignedInt("\nModificar: ","\nError",1,3,1,3,10,&opcion);
-                //utn_getChar("\nModificar: A B S(salir)","\nError",'A','Z',1,&opcion);
-                switch(opcion)
-                {
-                    case 1:
-                        if(utn_getUnsignedInt("\nIngrese codigo de autor: ","\nError",1,sizeof(int),1,10,3,&auxCodigoAutor)==-1 ||
-                           autor_buscarID(arrayAutor,sizeArray,auxCodigoAutor,&pos)==-1)                                   //cambiar si no se busca por ID
-                        {
-                            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-                        }
-                        else
-                        {
-                            array[posicion].codigoAutor=auxCodigoAutor;
-                        }
-                        break;
-                    case 2:
-                        utn_getName("\nIngrese el titulo: ","\nError",1,TEXT_SIZE,1,array[posicion].titulo);            //mensaje + cambiar campo varFloat
-                        break;
-                    case 3:
-                        break;
-                    default:
-                        printf("\nOpcion no valida");
-                }
-            }while(opcion!=3);
-            retorno=0;
+            utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
+            if(libro_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                do
+                {       //copiar printf de alta
+                    printf("\n 1-CodigoAutor: %d\n 2-titulo: %s\n 3-salir\n",
+                           array[posicion].codigoAutor,array[posicion].titulo);
+                    utn_getUnsignedInt("\nModificar: ","\nError",1,3,1,3,10,&opcion);
+                    //utn_getChar("\nModificar: A B S(salir)","\nError",'A','Z',1,&opcion);
+                    switch(opcion)
+                    {
+                        case 1:
+                            if(utn_getUnsignedInt("\nIngrese codigo de autor: ","\nError",1,sizeof(int),1,10,3,&auxCodigoAutor)==-1 ||
+                               autor_buscarID(arrayAutor,sizeArray,auxCodigoAutor,&pos)==-1)                                   //cambiar si no se busca por ID
+                            {
+                                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+                            }
+                            else
+                            {
+                                array[posicion].codigoAutor=auxCodigoAutor;
+                            }
+                            break;
+                        case 2:
+                            utn_getName("\nIngrese el titulo: ","\nError",1,TEXT_SIZE,1,array[posicion].titulo);            //mensaje + cambiar campo varFloat
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            printf("\nOpcion no valida");
+                    }
+                }while(opcion!=3);
+                retorno=0;
+            }
         }
     }
     return retorno;
@@ -374,18 +409,44 @@ int libro_listar(Libro array[], int size)                      //cambiar libro
 {
     int retorno=-1;
     int i;
-    if(array!=NULL && size>=0)
+    if (libro_todoVacio(array,size)==0)
     {
-        for(i=0;i<size;i++)
+        printf("\nNo ingreso ningun libro\n");
+    }
+    else
+    {
+        if(array!=NULL && size>=0)
         {
-            if(array[i].isEmpty==1)
-                continue;
-            else
-                printf("\n ID: %d\n codigoAutor: %d\n titulo: %s\n",
-                       array[i].idUnico,array[i].codigoAutor,array[i].titulo);      //cambiar todos
+            libro_ordenarPorString(array,size);
+            for(i=0;i<size;i++)
+            {
+                if(array[i].isEmpty==1)
+                    continue;
+                else
+                    printf("\n ID: %d\n codigoAutor: %d\n titulo: %s\n",
+                           array[i].idUnico,array[i].codigoAutor,array[i].titulo);      //cambiar todos
+            }
+            retorno=0;
         }
-        retorno=0;
     }
     return retorno;
 }
 
+int libro_todoVacio(Libro array[], int size)
+{
+    int ret=-1;
+    int contador=0;
+    int i;
+    for(i=0;i<size;i++)
+    {
+        if(array[i].isEmpty==1)
+        {
+            contador++;
+            if(contador==size)
+            {
+               ret=0;
+            }
+        }
+    }
+    return ret;
+}

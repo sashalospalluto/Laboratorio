@@ -4,6 +4,23 @@
 #include "utn.h"
 #include "autor.h" //cambiar por nombre entidad
 
+void autor_hardcodeo(Autor arrayAutor[])
+{
+    strcpy(arrayAutor[0].apellido,"Cortazar");
+    strcpy(arrayAutor[0].nombre,"Julio");
+    arrayAutor[0].idUnico=1;
+    arrayAutor[0].isEmpty=0;
+
+    strcpy(arrayAutor[1].apellido,"Sabato");
+    strcpy(arrayAutor[1].nombre,"Ernesto");
+    arrayAutor[1].idUnico=2;
+    arrayAutor[1].isEmpty=0;
+
+    strcpy(arrayAutor[2].apellido,"Borges");
+    strcpy(arrayAutor[2].nombre,"Jorge Luis");
+    arrayAutor[2].idUnico=3;
+    arrayAutor[2].isEmpty=0;
+}
 
 /** \brief  To indicate that all position in the array are empty,
 *          this function put the flag (isEmpty) in TRUE in all
@@ -161,16 +178,26 @@ int autor_alta(Autor array[], int size, int* contadorID)                        
         }
         else
         {
-            (*contadorID)++;
-            array[posicion].idUnico=*contadorID;                                                       //campo ID
-            array[posicion].isEmpty=0;
-//            utn_getUnsignedInt("\ngetUnsignedInt: ","\nError",1,sizeof(int),1,1,1,&array[posicion].varInt);           //mensaje + cambiar campo varInt
-//            utn_getFloat("\ngetFloat: ","\nError",1,sizeof(float),0,1,1,&array[posicion].varFloat);             //mensaje + cambiar campo varFloat
-            utn_getName("Ingrese el nombre\n: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);                      //mensaje + cambiar campo nombre
-            utn_getTexto("Ingrese el apellido\n: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido);                 //mensaje + cambiar campo apellido
-            printf("\n Posicion: %d\n ID: %d\n nombre: %s\n apellido: %s",
-                   posicion, array[posicion].idUnico,array[posicion].nombre,array[posicion].apellido);
-            retorno=0;
+            if(utn_getName("\nIngrese el nombre: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre)==0)
+            {
+                if (utn_getName("\nIngrese el apellido: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido)==0) //mensaje + cambiar campo apellido
+                {
+                    (*contadorID)++;
+                    array[posicion].idUnico=*contadorID;                                                       //campo ID
+                    array[posicion].isEmpty=0;
+                    printf("\n Posicion: %d\n ID: %d\n nombre: %s\n apellido: %s",
+                    posicion, array[posicion].idUnico,array[posicion].nombre,array[posicion].apellido);
+                    retorno=0;
+                }
+                else
+                {
+                    printf("\nError al cargar el apellido\n");
+                }
+            }
+            else
+            {
+                printf("\nError al cargar el nombre\n");
+            }
         }
     }
     return retorno;
@@ -189,22 +216,31 @@ int autor_baja(Autor array[], int sizeArray)                                    
     int retorno=-1;
     int posicion;
     int id;
-    if(array!=NULL && sizeArray>0)
+    int opcion;
+    if (autor_todoVacio(array,sizeArray)==0)
     {
-        utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
-        if(autor_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        printf("\nNo ingreso ningun autor\n");
+    }
+    else
+    {
+        if(array!=NULL && sizeArray>0)
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            array[posicion].isEmpty=1;
- //           array[posicion].idUnico=0;                                                                   //cambiar campo id
-//            array[posicion].varInt=0;                                                               //cambiar campo varInt
-//            array[posicion].varFloat=0;                                                             //cambiar campo varFloat
-//            strcpy(array[posicion].nombre,"");                                                   //cambiar campo nombre
- //           strcpy(array[posicion].apellido,"");                                               //cambiar campo apellido
-            retorno=0;
+            utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
+            if(autor_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                utn_getUnsignedInt("\n1-SI\n2-NO\n\tSeguro que desea borrar?:","No es una opcion valida",1,sizeof(int),1,2,3,&opcion);
+                if(opcion==1)
+                {
+                    array[posicion].isEmpty=1;
+                    retorno=0;
+                    printf("\nBaja realizada con exito\n");
+                }
+
+            }
         }
     }
     return retorno;
@@ -230,8 +266,6 @@ int autor_bajaValorRepetidoInt(Autor array[], int sizeArray, int valorBuscado) /
             {
                 array[i].isEmpty=1;
                 array[i].idUnico=0;                                                                   //cambiar campo id
-//                array[i].varInt=0;                                                               //cambiar campo varInt
-//                array[i].varFloat=0;                                                             //cambiar campo varFloat
                 strcpy(array[i].nombre,"");                                                   //cambiar campo nombre
                 strcpy(array[i].apellido,"");                                               //cambiar campo apellido
             }
@@ -256,42 +290,43 @@ int autor_modificar(Autor array[], int sizeArray)                               
     int retorno=-1;
     int posicion;
     int id;                                                                                         //cambiar si no se busca por ID
-    char opcion;
-    if(array!=NULL && sizeArray>0)
+    int opcion;
+    if (autor_todoVacio(array,sizeArray)==0)
     {
-        utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
-        if(autor_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        printf("\nNo ingreso ningun autor\n");
+    }
+    else
+    {
+        if(array!=NULL && sizeArray>0)
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            do
-            {       //copiar printf de alta
-                printf("\n Posicion: %d\n ID: %d\n nombre: %s\n apellido: %s",
-                       posicion, array[posicion].idUnico,array[posicion].nombre,array[posicion].apellido);
-                utn_getChar("\nModificar: A B C D S(salir)","\nError",'A','Z',1,&opcion);
-                switch(opcion)
-                {
-                    case 'A':
-//                        utn_getUnsignedInt("\n: ","\nError",1,sizeof(int),1,1,1,&array[posicion].varInt);           //mensaje + cambiar campo varInt
-                        break;
-                    case 'B':
-//                        utn_getFloat("\n: ","\nError",1,sizeof(float),0,1,1,&array[posicion].varFloat);             //mensaje + cambiar campo varFloat
-                        break;
-                    case 'C':
-                        utn_getName("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);                      //mensaje + cambiar campo nombre
-                        break;
-                    case 'D':
-                        utn_getTexto("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido);             //mensaje + cambiar campo apellido
-                        break;
-                    case 'S':
-                        break;
-                    default:
-                        printf("\nOpcion no valida");
-                }
-            }while(opcion!='S');
-            retorno=0;
+            utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
+            if(autor_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                do
+                {       //copiar printf de alta
+                    printf("\n 1-nombre: %s\n 2-apellido: %s \n 3-Salir",
+                           array[posicion].nombre,array[posicion].apellido);
+                    utn_getUnsignedInt("\nIngrese opcion: ","error",1,3,1,3,3,&opcion);
+                    switch(opcion)
+                    {
+                        case 1:
+                            utn_getName("\nIngrese nombre: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);                      //mensaje + cambiar campo nombre
+                            break;
+                        case 2:
+                            utn_getName("\nIngrese apellido: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido);             //mensaje + cambiar campo apellido
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            printf("\nOpcion no valida");
+                    }
+                }while(opcion!=3);
+                retorno=0;
+            }
         }
     }
     return retorno;
@@ -305,51 +340,35 @@ int autor_modificar(Autor array[], int sizeArray)                               
 * \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se ordena exitosamente
 *
 */
-int autor_ordenarPorString(Autor array[],int size)                              //cambiar autor
+void autor_ordenarPorString(Autor array[],int size)                              //cambiar autor
 {
-    int retorno=-1;
-    int i, j;
-    char bufferString[TEXT_SIZE];                               //cambiar campo nombre
-    int bufferId;
-    int bufferIsEmpty;
+    printf("\nORDENADO POR APELLIDO Y NOMBRE\n");
+    int i;
+    Autor auxiliar;
+    int j;
 
-//    int bufferInt;                                              //cambiar buffer int
-//    float bufferFloat;                                          //cambiar buffer varFloat
-    char bufferLongString[TEXT_SIZE];                           //cambiar campo apellido
-
-    if(array!=NULL && size>=0)
-    {
-        for (i = 1; i < size; i++)
+      for(i=0 ; i<size-1 ; i++)
         {
-            strcpy(bufferString,array[i].nombre);                      //cambiar campo nombre
-
-            bufferId=array[i].idUnico;                                   //cambiar campo id
-            bufferIsEmpty=array[i].isEmpty;
-
-//            bufferInt=array[i].varInt;                                //cambiar campo varInt
-//            bufferFloat=array[i].varFloat;                            //cambiar campo varFloat
-            strcpy(bufferLongString,array[i].apellido);          //cambiar campo apellido
-
-
-            j = i - 1;
-            while ((j >= 0) && strcmpi(bufferLongString,array[i].apellido)<0)         //cambiar campo nombre                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].varInt
-            {                                                                                                               //buffer < campo ascendente   buffer > campo descendente
-                strcpy(array[j + 1].nombre,array[j].nombre);          //cambiar campo nombre
-                array[j + 1].idUnico=array[j].idUnico;                                //cambiar campo id
-                array[j + 1].isEmpty=array[j].isEmpty;
-                strcpy(array[j + 1].apellido,array[j].apellido);  //cambiar campo apellido
-
-                j--;
+            for(j=i+1; j<size ; j++)
+            {
+                if((array[i].isEmpty==0) && (array[j].isEmpty==0))
+                {
+                    if ((strcmpi(array[j].apellido,array[i].apellido)<0))
+                    {
+                        auxiliar=array[i];
+                        array[i]=array[j];
+                        array[j]=auxiliar;
+                    }else if((strcmpi(array[j].apellido,array[i].apellido)==0) && (strcmpi(array[j].nombre,array[i].nombre)<0))
+                        {
+                            auxiliar=array[i];
+                            array[i]=array[j];
+                            array[j]=auxiliar;
+                        }
+                }
             }
-            strcpy(array[j + 1].nombre,bufferString);                     //cambiar campo nombre
-            array[j + 1].idUnico=bufferId;                                        //cambiar campo id
-            array[j + 1].isEmpty=bufferIsEmpty;
-            strcpy(array[j + 1].apellido,bufferLongString);                                  //cambiar campo apellido
         }
-        retorno=0;
-    }
-    return retorno;
 }
+
 
 //*****************************************
 //Listar
@@ -363,19 +382,49 @@ int autor_listar(Autor array[], int size)                      //cambiar autor
 {
     int retorno=-1;
     int i;
-    if(array!=NULL && size>=0)
+    if (autor_todoVacio(array,size)==0)
     {
-        for(i=0;i<size;i++)
+        printf("\nNo ingreso ningun autor\n");
+    }
+    else
+    {
+        if(array!=NULL && size>=0)
         {
-            if(array[i].isEmpty==1)
-                continue;
-            else
-                printf("\n ID: %d\n nombre: %s\n apellido: %s",
-                       array[i].idUnico,array[i].nombre,array[i].apellido);      //cambiar todos
+            autor_ordenarPorString(array,size);
+            for(i=0;i<size;i++)
+            {
+                if(array[i].isEmpty==1)
+                {
+                    continue;
+                }
+                else
+                {
+                    printf("\n ID: %d\n nombre: %s\n apellido: %s",
+                    array[i].idUnico,array[i].nombre,array[i].apellido);
+                }
+
+            }
+            retorno=0;
         }
-        retorno=0;
     }
     return retorno;
 }
 
-
+int autor_todoVacio(Autor array[], int size)
+{
+    int ret=-1;
+    int contador=0;
+    int i;
+    for(i=0;i<size;i++)
+    {
+        if(array[i].isEmpty==1)
+        {
+            contador++;
+            if(contador==size)
+            {
+               ret=0;
+            }
+        }
+    }
+    return ret;
+}
