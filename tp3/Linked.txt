@@ -1,0 +1,68 @@
+/*
+    utest example : Unit test examples.
+    Copyright (C) <2018>  <Mauricio Davila>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef __LINKEDLIST
+#define __LINKEDLIST
+struct Node
+{
+    void* pElement;
+    struct Node* pNextNode;
+}typedef Node;
+
+struct LinkedList
+{
+    Node* pFirstNode;
+    int size;
+}typedef LinkedList;
+#endif
+
+
+
+//Publicas
+LinkedList* ll_newLinkedList(void);//CONSTRUYE UN ESPACIO DE MEMORIA
+int ll_len(LinkedList* this);//PARA SABER EL TAMAÑO DE LA LISTA:LA RECORRO O VOY CONTANDO CUANDO VA INCREMENTANDO O DECRECIENDO LA LISTA
+
+
+Node* test_getNode(LinkedList* this, int nodeIndex);
+int test_addNode(LinkedList* this, int nodeIndex,void* pElement);
+
+
+int ll_add(LinkedList* this, void* pElement);
+void* ll_get(LinkedList* this, int index);
+int ll_set(LinkedList* this, int index,void* pElement);//REEMPLAZA UN PUNTERO EN NODO EXISTENTE
+int ll_remove(LinkedList* this,int index);//EL 9 APUNTA AL 11 Y EL 10 YA NO FORMA PARTE DE LA LISTA
+int ll_clear(LinkedList* this);//VUELVE LA LISTA AL ESTADO ORIGINAL
+int ll_deleteLinkedList(LinkedList* this);//BORRA LA RAIZ DE LA LISTA, COMO SI NUNCA HUBIERA EJECUTADO EL NEW
+int ll_indexOf(LinkedList* this, void* pElement);//PREGUNTAS SI EL PUNTERO ESTA, SI ES NEGATIVO NO ESTA EN LA LISTA
+
+int ll_isEmpty(LinkedList* this);
+
+int ll_push(LinkedList* this, int index, void* pElement);//PERMITE METER UN ELEMENTO ENTRE DOS NODOS QUE EXISTEN
+void* ll_pop(LinkedList* this,int index);//ELIMINA UN ELEMENTO PERO A LA VEZ MANTIENE EL NODO
+
+int ll_contains(LinkedList* this, void* pElement);//SI ESE ELEMENTO ESTA O NO ESTA
+int ll_containsAll(LinkedList* this,LinkedList* this2);//RECIBE DOS LISTAS, CHEQUEA SI TODOS LOS ELEMENTOS QUE ESTAN EN 'THIS2' ESTAN EN 'THIS'
+
+LinkedList* ll_subList(LinkedList* this,int from,int to);//SLICE: LISTA NUEVA QUE CONTIENE LOS ELEMENTOS DESDE/HASTA
+LinkedList* ll_clone(LinkedList* this);//COPIAR LISTA, RECORRE LA LISTA HACIENDO GET Y ADD
+
+int ll_sort(LinkedList* this,
+            int(*pFunc)(void* ,void*),//PUNTERO A FUNCION
+            int order);//ASCENDENTE-DESENDENTE
+/*ejemplo: int ll_sort(listadoEmpleados, criterioOrden, 1);*/
+
