@@ -97,8 +97,6 @@ void utest_startTest(void(*fncTest)(void),void(*fncBefore)(void),char* testName)
 			utest_print("TEST OK\r\n");
 			utest_okTestsCounter++;
 		}
-
-
 	}
 }
 
