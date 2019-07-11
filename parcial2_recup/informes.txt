@@ -1,0 +1,5 @@
+Registro
+- Cantidad de fotos reveladas: 48422
+- Cantidad de ventas mayores a $150: 469
+- Cantidad de ventas mayores a $300: 452
+- Cantidad de fotos polaroids reveladas: 172

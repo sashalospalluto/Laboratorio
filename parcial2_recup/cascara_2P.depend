@@ -1,0 +1,185 @@
+# depslib dependency file v1.0
+1561664790 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"controller.h"
+	"parser.h"
+	"registro.h"
+
+1561664790 h"
+
+1561664549 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\controller.h
+	"LinkedList.h"
+
+1561662956 t.h"
+
+1561661784 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\linkedlist.h
+
+1561662690 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\parser.h
+	"LinkedList.h"
+
+1561662740 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\registro.h
+	"LinkedList.h"
+
+1561660545 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1561664627 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	"controller.h"
+	"LinkedList.h"
+
+1561663238 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"parser.h"
+	"registro.h"
+	"LinkedList.h"
+
+1561662956 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\registro.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"registro.h"
+	"LinkedList.h"
+	"utn.h"
+
+1560992210 c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\utn.h
+
+1561665001 source:c:\users\sashaoriana\documents\utn2019\laboratorio2\laboratorio\cascara_2p\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1561665001 
+
+1561683672 source:/home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/controller.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"controller.h"
+	"parser.h"
+	"registro.h"
+
+1561666233 /home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/controller.h
+	"LinkedList.h"
+
+1561683568 /home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/LinkedList.h
+
+1561666233 /home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/parser.h
+	"LinkedList.h"
+
+1561683568 /home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/registro.h
+	"LinkedList.h"
+
+1561683587 source:/home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"registro.h"
+
+1561675674 source:/home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	"controller.h"
+	"LinkedList.h"
+
+1561675028 source:/home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"parser.h"
+	"registro.h"
+	"LinkedList.h"
+
+1561683592 source:/home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/registro.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"registro.h"
+	"LinkedList.h"
+	"utn.h"
+
+1561666233 /home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/utn.h
+
+1561681169 source:/home/alumno/Escritorio/sasha/Laboratorio-master/cascara_2P/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1562859662 source:c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\controller.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"controller.h"
+	"parser.h"
+	"registro.h"
+
+1561684273 c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\controller.h
+	"LinkedList.h"
+
+1561684273 c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\linkedlist.h
+
+1561684273 c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\parser.h
+	"LinkedList.h"
+
+1562859394 c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\registro.h
+	"LinkedList.h"
+
+1562856608 source:c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"registro.h"
+
+1562857763 source:c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	"controller.h"
+	"LinkedList.h"
+
+1561684273 source:c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"parser.h"
+	"registro.h"
+	"LinkedList.h"
+
+1562859548 source:c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\registro.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"registro.h"
+	"LinkedList.h"
+	"utn.h"
+
+1561684273 c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\utn.h
+
+1561684273 source:c:\users\sashaoriana\documents\utn2019\parcial2\laboratorio-master (3)\laboratorio-master\parcial2_recup\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
